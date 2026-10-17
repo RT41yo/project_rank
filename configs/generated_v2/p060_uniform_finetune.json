@@ -1,0 +1,29 @@
+{
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/p060_uniform_finetune_seed1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 30,
+  "learning_rate": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "auto",
+  "inner_widths": [
+    10,
+    10,
+    10,
+    18,
+    18,
+    18,
+    38,
+    38,
+    38
+  ],
+  "resume_from": "results/compact_initializations/p060_uniform_l1_init.pt"
+}

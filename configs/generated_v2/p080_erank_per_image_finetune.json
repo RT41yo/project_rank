@@ -1,0 +1,29 @@
+{
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/p080_erank_per_image_finetune_seed1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 30,
+  "learning_rate": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "auto",
+  "inner_widths": [
+    14,
+    16,
+    16,
+    32,
+    32,
+    32,
+    50,
+    50,
+    42
+  ],
+  "resume_from": "results/compact_initializations/p080_erank_per_image_l1_init.pt"
+}

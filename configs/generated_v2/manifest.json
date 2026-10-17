@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "seed": 1,
+  "budgets": [
+    {
+      "label": "p080",
+      "requested_parameter_ratio": 0.8,
+      "experiments": [
+        {
+          "name": "erank_pooled",
+          "aliases": [
+            "erank_pooled",
+            "erank_weight"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p080_erank_pooled_scratch.json",
+          "parameters": 218766
+        },
+        {
+          "name": "erank_pooled",
+          "aliases": [
+            "erank_pooled",
+            "erank_weight"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p080_erank_pooled_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p080_erank_pooled_l1_init.pt",
+          "parameters": 218766
+        },
+        {
+          "name": "erank_per_image",
+          "aliases": [
+            "erank_per_image"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p080_erank_per_image_scratch.json",
+          "parameters": 218226
+        },
+        {
+          "name": "erank_per_image",
+          "aliases": [
+            "erank_per_image"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p080_erank_per_image_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p080_erank_per_image_l1_init.pt",
+          "parameters": 218226
+        },
+        {
+          "name": "uniform",
+          "aliases": [
+            "uniform"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p080_uniform_scratch.json",
+          "parameters": 219062
+        },
+        {
+          "name": "uniform",
+          "aliases": [
+            "uniform"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p080_uniform_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p080_uniform_l1_init.pt",
+          "parameters": 219062
+        },
+        {
+          "name": "random",
+          "aliases": [
+            "random"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p080_random_scratch.json",
+          "parameters": 218770
+        },
+        {
+          "name": "random",
+          "aliases": [
+            "random"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p080_random_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p080_random_l1_init.pt",
+          "parameters": 218770
+        }
+      ],
+      "aliases": [
+        {
+          "representative": "erank_pooled",
+          "equivalent_names": [
+            "erank_pooled",
+            "erank_weight"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "p060",
+      "requested_parameter_ratio": 0.6,
+      "experiments": [
+        {
+          "name": "erank_pooled",
+          "aliases": [
+            "erank_pooled",
+            "erank_weight"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p060_erank_pooled_scratch.json",
+          "parameters": 162470
+        },
+        {
+          "name": "erank_pooled",
+          "aliases": [
+            "erank_pooled",
+            "erank_weight"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p060_erank_pooled_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p060_erank_pooled_l1_init.pt",
+          "parameters": 162470
+        },
+        {
+          "name": "erank_per_image",
+          "aliases": [
+            "erank_per_image"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p060_erank_per_image_scratch.json",
+          "parameters": 162790
+        },
+        {
+          "name": "erank_per_image",
+          "aliases": [
+            "erank_per_image"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p060_erank_per_image_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p060_erank_per_image_l1_init.pt",
+          "parameters": 162790
+        },
+        {
+          "name": "uniform",
+          "aliases": [
+            "uniform"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p060_uniform_scratch.json",
+          "parameters": 162470
+        },
+        {
+          "name": "uniform",
+          "aliases": [
+            "uniform"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p060_uniform_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p060_uniform_l1_init.pt",
+          "parameters": 162470
+        },
+        {
+          "name": "random",
+          "aliases": [
+            "random"
+          ],
+          "mode": "scratch",
+          "config": "configs/generated_v2/p060_random_scratch.json",
+          "parameters": 162470
+        },
+        {
+          "name": "random",
+          "aliases": [
+            "random"
+          ],
+          "mode": "finetune",
+          "config": "configs/generated_v2/p060_random_finetune.json",
+          "initial_checkpoint": "results/compact_initializations/p060_random_l1_init.pt",
+          "parameters": 162470
+        }
+      ],
+      "aliases": [
+        {
+          "representative": "erank_pooled",
+          "equivalent_names": [
+            "erank_pooled",
+            "erank_weight"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@
   "num_classes": 10,
   "synthetic_train_size": 64,
   "synthetic_val_size": 32,
+  "synthetic_test_size": 32,
   "batch_size": 16,
   "num_workers": 0,
   "epochs": 1,

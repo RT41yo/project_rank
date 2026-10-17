@@ -1,0 +1,28 @@
+{
+  "seed": 3,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/p060_erank_per_image_scratch_seed3",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 160,
+  "learning_rate": 0.1,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "auto",
+  "inner_widths": [
+    10,
+    12,
+    14,
+    24,
+    26,
+    26,
+    36,
+    36,
+    30
+  ]
+}

@@ -121,3 +121,48 @@ def build_loaders(config: Mapping[str, Any]) -> tuple[DataLoader[Any], DataLoade
     )
     return train_loader, val_loader
 
+
+def build_test_loader(config: Mapping[str, Any]) -> DataLoader[Any]:
+    """Build a deterministic loader for the held-out test split.
+
+    CIFAR-10 test images are never used by ``build_loaders`` and therefore do
+    not influence training, architecture selection, or checkpoint selection.
+    """
+    dataset_name = str(config.get("dataset", "cifar10")).lower()
+    seed = int(config.get("seed", 1))
+    batch_size = int(config.get("batch_size", 128))
+    workers = int(config.get("num_workers", 4))
+    pin_memory = bool(config.get("pin_memory", torch.cuda.is_available()))
+    num_classes = int(config.get("num_classes", 10))
+
+    if dataset_name == "synthetic":
+        test_set: Dataset[Any] = SyntheticCIFAR(
+            int(config.get("synthetic_test_size", 32)), num_classes, seed + 2
+        )
+    elif dataset_name == "cifar10":
+        from torchvision import datasets, transforms
+
+        eval_transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize(CIFAR10_MEAN, CIFAR10_STD),
+            ]
+        )
+        test_set = datasets.CIFAR10(
+            str(config.get("data_dir", "data")),
+            train=False,
+            download=True,
+            transform=eval_transform,
+        )
+    else:
+        raise ValueError(f"Unsupported dataset: {dataset_name}")
+
+    return _loader(
+        test_set,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=workers,
+        seed=seed,
+        pin_memory=pin_memory,
+    )
+

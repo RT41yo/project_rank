@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "project-rank"
-version = "0.3.0"
+version = "0.4.0"
 description = "Effective-rank architecture search for CIFAR ResNet-20"
 requires-python = ">=3.10"
 dependencies = [

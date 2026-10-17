@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "source_manifest_seed": 1,
+  "fixed_architectures": true,
+  "budget": "p060",
+  "methods": [
+    "erank_pooled",
+    "erank_per_image",
+    "uniform"
+  ],
+  "seeds": [
+    2,
+    3
+  ],
+  "experiments": [
+    {
+      "budget": "full",
+      "method": "baseline",
+      "mode": "scratch",
+      "seed": 2,
+      "config": "configs/repeats/baseline_seed2.json"
+    },
+    {
+      "budget": "p060",
+      "method": "erank_pooled",
+      "mode": "scratch",
+      "seed": 2,
+      "config": "configs/repeats/p060_erank_pooled_scratch_seed2.json",
+      "parameters": 162470
+    },
+    {
+      "budget": "p060",
+      "method": "erank_per_image",
+      "mode": "scratch",
+      "seed": 2,
+      "config": "configs/repeats/p060_erank_per_image_scratch_seed2.json",
+      "parameters": 162790
+    },
+    {
+      "budget": "p060",
+      "method": "uniform",
+      "mode": "scratch",
+      "seed": 2,
+      "config": "configs/repeats/p060_uniform_scratch_seed2.json",
+      "parameters": 162470
+    },
+    {
+      "budget": "full",
+      "method": "baseline",
+      "mode": "scratch",
+      "seed": 3,
+      "config": "configs/repeats/baseline_seed3.json"
+    },
+    {
+      "budget": "p060",
+      "method": "erank_pooled",
+      "mode": "scratch",
+      "seed": 3,
+      "config": "configs/repeats/p060_erank_pooled_scratch_seed3.json",
+      "parameters": 162470
+    },
+    {
+      "budget": "p060",
+      "method": "erank_per_image",
+      "mode": "scratch",
+      "seed": 3,
+      "config": "configs/repeats/p060_erank_per_image_scratch_seed3.json",
+      "parameters": 162790
+    },
+    {
+      "budget": "p060",
+      "method": "uniform",
+      "mode": "scratch",
+      "seed": 3,
+      "config": "configs/repeats/p060_uniform_scratch_seed3.json",
+      "parameters": 162470
+    }
+  ]
+}

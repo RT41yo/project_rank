@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "project-rank"
-version = "0.4.0"
+version = "0.5.0"
 description = "Effective-rank architecture search for CIFAR ResNet-20"
 requires-python = ">=3.10"
 dependencies = [
@@ -14,7 +14,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "matplotlib>=3.8"]
+report = ["matplotlib>=3.8"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -264,3 +264,17 @@ python -m project_rank.summarize_results \
   корректного случайного baseline нужны несколько независимо сгенерированных
   архитектур.
 
+## Итоговые графики и отчёт
+
+Проверенные итоговые числа собраны в `reports/data/final_results.json`. Графики
+перестраиваются одной командой:
+
+```bash
+python -m project_rank.plot_results \
+  --data reports/data/final_results.json \
+  --output-dir reports/figures
+```
+
+Итоговый отчёт находится в `reports/REPORT.md`. Все рисунки, на которые он
+ссылается, находятся в каталоге `reports/figures/`.
+

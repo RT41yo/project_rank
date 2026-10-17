@@ -12,6 +12,7 @@ dist/
 data/
 external/
 results/*
+!results/summary_v04/
 !results/.gitkeep
 *.pt
 *.pth

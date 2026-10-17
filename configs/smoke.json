@@ -1,0 +1,18 @@
+{
+  "seed": 1,
+  "dataset": "synthetic",
+  "output_dir": "results/smoke",
+  "num_classes": 10,
+  "synthetic_train_size": 64,
+  "synthetic_val_size": 32,
+  "batch_size": 16,
+  "num_workers": 0,
+  "epochs": 1,
+  "learning_rate": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "none",
+  "amp": false,
+  "device": "cpu",
+  "inner_widths": [16, 16, 16, 32, 32, 32, 64, 64, 64]
+}

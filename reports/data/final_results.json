@@ -1,0 +1,206 @@
+{
+  "schema_version": 2,
+  "dataset": "CIFAR-10",
+  "model": "ResNet-20",
+  "batch_size": 128,
+  "primary_methods": ["erank_per_image", "erank_pooled", "uniform", "l1_weight", "taylor"],
+  "baseline": {
+    "label": "baseline",
+    "widths": [16, 16, 16, 32, 32, 32, 64, 64, 64],
+    "parameters": 272474,
+    "test_by_seed": [0.9249, 0.9204, 0.9180],
+    "test_mean": 0.9211,
+    "test_stdev": 0.003502855977627412,
+    "validation_mean": 0.9238666666666667,
+    "validation_stdev": 0.003008875759039141,
+    "benchmark": {
+      "macs_per_batch": 5224087552,
+      "latency_median_ms": 1.3093649999973422,
+      "latency_p90_ms": 1.442799999495037,
+      "images_per_second": 97757.30984122824,
+      "peak_cuda_memory_bytes": 78218240
+    }
+  },
+  "p060": {
+    "erank_per_image": {
+      "label": "erank_per_image",
+      "widths": [10, 12, 14, 24, 26, 26, 36, 36, 30],
+      "parameters": 162790,
+      "test_by_seed": [0.9133, 0.9185, 0.9120],
+      "test_mean": 0.9146,
+      "test_stdev": 0.0034394767043839456,
+      "validation_mean": 0.9174666666666667,
+      "validation_stdev": 0.005352880844305582,
+      "finetune_test_seed1": 0.9170,
+      "benchmark": {
+        "macs_per_batch": 3648077824,
+        "latency_median_ms": 1.2161465001554461,
+        "latency_p90_ms": 1.739674000418745,
+        "images_per_second": 105250.47762225951,
+        "peak_cuda_memory_bytes": 77783040
+      }
+    },
+    "erank_pooled": {
+      "label": "erank_pooled",
+      "widths": [8, 10, 10, 18, 20, 20, 36, 38, 38],
+      "parameters": 162470,
+      "test_by_seed": [0.9095, 0.9103, 0.9064],
+      "test_mean": 0.9087333333333333,
+      "test_stdev": 0.002059935274064054,
+      "validation_mean": 0.9151333333333334,
+      "validation_stdev": 0.0039310727967481664,
+      "finetune_test_seed1": 0.9117,
+      "benchmark": {
+        "macs_per_batch": 3129032704,
+        "latency_median_ms": 1.143990999480593,
+        "latency_p90_ms": 1.2653710000449792,
+        "images_per_second": 111888.9921844804,
+        "peak_cuda_memory_bytes": 69383168
+      }
+    },
+    "uniform": {
+      "label": "uniform",
+      "widths": [10, 10, 10, 18, 18, 18, 38, 38, 38],
+      "parameters": 162470,
+      "test_by_seed": [0.9147, 0.9112, 0.9095],
+      "test_mean": 0.9118,
+      "test_stdev": 0.002651414716712557,
+      "validation_mean": 0.9159333333333334,
+      "validation_stdev": 0.0053003144560802825,
+      "finetune_test_seed1": 0.9105,
+      "benchmark": {
+        "macs_per_batch": 3143188480,
+        "latency_median_ms": 1.081497999621206,
+        "latency_p90_ms": 1.1854040003527189,
+        "images_per_second": 118354.35668381442,
+        "peak_cuda_memory_bytes": 69385216
+      }
+    },
+    "l1_weight": {
+      "label": "l1_weight",
+      "widths": [16, 16, 16, 32, 32, 32, 64, 16, 16],
+      "parameters": 161690,
+      "test_by_seed": [0.9152, 0.9122, 0.9155],
+      "test_mean": 0.9143,
+      "test_stdev": 0.0018248287590894652,
+      "validation_mean": 0.9194666666666667,
+      "validation_stdev": 0.001616580753730969,
+      "benchmark": {
+        "macs_per_batch": 4318117888,
+        "latency_median_ms": 1.232808001077501,
+        "latency_p90_ms": 1.4690099997096695,
+        "images_per_second": 103828.00881250382,
+        "peak_cuda_memory_bytes": 77775872
+      }
+    },
+    "taylor": {
+      "label": "taylor",
+      "widths": [16, 16, 16, 30, 32, 32, 52, 22, 20],
+      "parameters": 161970,
+      "test_by_seed": [0.9186, 0.9141, 0.9169],
+      "test_mean": 0.9165333333333333,
+      "test_stdev": 0.0022722969289538804,
+      "validation_mean": 0.9186666666666667,
+      "validation_stdev": 0.0028589042189855057,
+      "benchmark": {
+        "macs_per_batch": 4299243520,
+        "latency_median_ms": 1.2535285004560137,
+        "latency_p90_ms": 1.470243001676863,
+        "images_per_second": 102111.7588897545,
+        "peak_cuda_memory_bytes": 77777408
+      }
+    },
+    "random": {
+      "label": "random",
+      "widths": [8, 8, 16, 26, 26, 4, 24, 44, 42],
+      "parameters": 162470,
+      "test_seed1": 0.9104,
+      "validation_seed1": 0.9176,
+      "finetune_test_seed1": 0.9100,
+      "benchmark": {
+        "macs_per_batch": 3213967360,
+        "latency_median_ms": 1.1618244998317095,
+        "latency_p90_ms": 1.901858000564971,
+        "images_per_second": 110171.54485771373,
+        "peak_cuda_memory_bytes": 77780480
+      }
+    }
+  },
+  "p080": {
+    "erank_per_image": {
+      "label": "erank_per_image",
+      "widths": [14, 16, 16, 32, 32, 32, 50, 50, 42],
+      "parameters": 218226,
+      "validation_seed1": 0.9266,
+      "test_seed1": 0.9222,
+      "finetune_test_seed1": 0.9207,
+      "benchmark": {"macs_per_batch": 4709761024, "latency_median_ms": 1.2902124999527587, "latency_p90_ms": 1.9000990005224594, "images_per_second": 99208.46372569381, "peak_cuda_memory_bytes": 78002176}
+    },
+    "erank_pooled": {
+      "label": "erank_pooled",
+      "widths": [12, 12, 12, 24, 26, 26, 50, 52, 52],
+      "parameters": 218766,
+      "validation_seed1": 0.9262,
+      "test_seed1": 0.9172,
+      "finetune_test_seed1": 0.9183,
+      "benchmark": {"macs_per_batch": 4105781248, "latency_median_ms": 1.41508149999936, "latency_p90_ms": 1.7021650000970112, "images_per_second": 90454.15405406537, "peak_cuda_memory_bytes": 73809920}
+    },
+    "uniform": {
+      "label": "uniform",
+      "widths": [13, 13, 13, 26, 26, 26, 51, 51, 51],
+      "parameters": 219062,
+      "validation_seed1": 0.9278,
+      "test_seed1": 0.9195,
+      "finetune_test_seed1": 0.9223,
+      "benchmark": {"macs_per_batch": 4235542528, "latency_median_ms": 1.3423909999801253, "latency_p90_ms": 1.858126999650267, "images_per_second": 95352.24834038301, "peak_cuda_memory_bytes": 76436480}
+    },
+    "l1_weight": {
+      "label": "l1_weight",
+      "widths": [16, 16, 16, 32, 32, 32, 64, 42, 40],
+      "parameters": 219390,
+      "validation_seed1": 0.9260,
+      "test_seed1": 0.9224,
+      "benchmark": {"macs_per_batch": 4789977088, "latency_median_ms": 1.280016500459169, "latency_p90_ms": 1.3933119989815168, "images_per_second": 99998.71091824495, "peak_cuda_memory_bytes": 78006272}
+    },
+    "taylor": {
+      "label": "taylor",
+      "widths": [16, 16, 16, 32, 32, 32, 62, 42, 40],
+      "parameters": 217658,
+      "validation_seed1": 0.9272,
+      "test_seed1": 0.9213,
+      "benchmark": {"macs_per_batch": 4775821312, "latency_median_ms": 1.2853930002165725, "latency_p90_ms": 1.6124210014822893, "images_per_second": 99580.43958418445, "peak_cuda_memory_bytes": 77999616}
+    },
+    "random": {
+      "label": "random",
+      "widths": [14, 12, 14, 28, 18, 22, 60, 48, 52],
+      "parameters": 218770,
+      "validation_seed1": 0.9276,
+      "test_seed1": 0.9181,
+      "finetune_test_seed1": 0.9166,
+      "benchmark": {"macs_per_batch": 4119937024, "latency_median_ms": 1.3172330004636024, "latency_p90_ms": 1.956099000381073, "images_per_second": 97173.39297979187, "peak_cuda_memory_bytes": 76957696}
+    }
+  },
+  "layer_sensitivity": {
+    "reduction_ratio": 0.25,
+    "baseline_validation_accuracy": 0.9236,
+    "fine_tuning": false,
+    "blocks": [
+      {"name": "block1", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0024},
+      {"name": "block2", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0020},
+      {"name": "block3", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0076},
+      {"name": "block4", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0316},
+      {"name": "block5", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0058},
+      {"name": "block6", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0100},
+      {"name": "block7", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0372},
+      {"name": "block8", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0402},
+      {"name": "block9", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0424}
+    ],
+    "spearman_vs_accuracy_drop": {
+      "erank_per_image": -0.6666666666666666,
+      "erank_pooled": 0.23333333333333334,
+      "erank_weight": 0.3,
+      "l1_weight": 0.31666666666666665,
+      "taylor": 0.6
+    }
+  }
+}

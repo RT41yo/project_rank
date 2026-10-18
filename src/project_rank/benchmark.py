@@ -4,13 +4,14 @@ import argparse
 import json
 import statistics
 import time
+from pathlib import Path
 from typing import Any
 
 import torch
 from torch import nn
 
 from project_rank.models import ResNet20
-from project_rank.utils import resolve_device
+from project_rank.utils import resolve_device, save_json
 
 
 def count_macs(model: nn.Module, sample: torch.Tensor) -> int:
@@ -90,6 +91,7 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--warmup", type=int, default=50)
     parser.add_argument("--iterations", type=int, default=200)
+    parser.add_argument("--output", help="Optional JSON output path")
     args = parser.parse_args()
 
     device = resolve_device(args.device)
@@ -101,6 +103,8 @@ def main() -> None:
     result = benchmark(
         model, device, args.batch_size, args.warmup, args.iterations
     )
+    if args.output:
+        save_json(result, Path(args.output))
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

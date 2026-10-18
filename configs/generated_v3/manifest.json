@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "experiments": [
+    {
+      "run": "p080_l1_weight_scratch_seed1",
+      "budget": "p080",
+      "method": "l1_weight",
+      "mode": "scratch",
+      "seed": 1,
+      "parameters": 219390,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        42,
+        40
+      ],
+      "config": "configs/generated_v3/p080_l1_weight_scratch_seed1.json"
+    },
+    {
+      "run": "p080_taylor_scratch_seed1",
+      "budget": "p080",
+      "method": "taylor",
+      "mode": "scratch",
+      "seed": 1,
+      "parameters": 217658,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        62,
+        42,
+        40
+      ],
+      "config": "configs/generated_v3/p080_taylor_scratch_seed1.json"
+    },
+    {
+      "run": "p060_l1_weight_scratch_seed1",
+      "budget": "p060",
+      "method": "l1_weight",
+      "mode": "scratch",
+      "seed": 1,
+      "parameters": 161690,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        16,
+        16
+      ],
+      "config": "configs/generated_v3/p060_l1_weight_scratch_seed1.json"
+    },
+    {
+      "run": "p060_l1_weight_scratch_seed2",
+      "budget": "p060",
+      "method": "l1_weight",
+      "mode": "scratch",
+      "seed": 2,
+      "parameters": 161690,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        16,
+        16
+      ],
+      "config": "configs/generated_v3/p060_l1_weight_scratch_seed2.json"
+    },
+    {
+      "run": "p060_l1_weight_scratch_seed3",
+      "budget": "p060",
+      "method": "l1_weight",
+      "mode": "scratch",
+      "seed": 3,
+      "parameters": 161690,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        16,
+        16
+      ],
+      "config": "configs/generated_v3/p060_l1_weight_scratch_seed3.json"
+    },
+    {
+      "run": "p060_taylor_scratch_seed1",
+      "budget": "p060",
+      "method": "taylor",
+      "mode": "scratch",
+      "seed": 1,
+      "parameters": 161970,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        30,
+        32,
+        32,
+        52,
+        22,
+        20
+      ],
+      "config": "configs/generated_v3/p060_taylor_scratch_seed1.json"
+    },
+    {
+      "run": "p060_taylor_scratch_seed2",
+      "budget": "p060",
+      "method": "taylor",
+      "mode": "scratch",
+      "seed": 2,
+      "parameters": 161970,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        30,
+        32,
+        32,
+        52,
+        22,
+        20
+      ],
+      "config": "configs/generated_v3/p060_taylor_scratch_seed2.json"
+    },
+    {
+      "run": "p060_taylor_scratch_seed3",
+      "budget": "p060",
+      "method": "taylor",
+      "mode": "scratch",
+      "seed": 3,
+      "parameters": 161970,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        30,
+        32,
+        32,
+        52,
+        22,
+        20
+      ],
+      "config": "configs/generated_v3/p060_taylor_scratch_seed3.json"
+    }
+  ]
+}

@@ -69,6 +69,16 @@ ERank задаёт относительное распределение шир�
 Они подбираются к фактическому числу параметров ERank-модели, а не к простой
 сумме каналов. JSON содержит точную разницу в процентах.
 
+В версии 0.6.0 дополнительно используются два классических критерия:
+
+- `l1_weight` — сумма модулей весов каждого фильтра `Conv1`;
+- `taylor` — модуль произведения активации канала на градиент функции ошибки.
+
+Чтобы оценки из разных слоев можно было сравнивать, в каждом слое они
+нормируются по L2-норме. Затем по два канала удаляются там, где отношение
+важности к экономии параметров минимально. Для обоих критериев используется
+одно и то же правило, поэтому различается только способ оценки важности.
+
 ## Перенос весов
 
 Эффективный ранг определяет, сколько внутренних каналов оставить, но не выбирает
@@ -250,12 +260,68 @@ python -m project_rank.summarize_results \
 Если доступны результаты нескольких seed, дополнительно рассчитывается
 стандартное отклонение accuracy.
 
-## Ограничения текущей версии
+### 12. Расчет `l1_weight` и `taylor`
+
+```bash
+python -m project_rank.pruning_criteria \
+  --config configs/baseline.json \
+  --checkpoint results/baseline_seed1/best.pt \
+  --output results/rank_analysis_seed1/pruning_scores.json \
+  --max-samples 5000
+```
+
+`l1_weight` читается непосредственно из весов. Для `taylor` выполняется один
+проход по validation с расчетом градиентов. Оптимизатор не запускается, веса
+не изменяются, то есть на этом шаге модель не обучается.
+
+### 13. Построение архитектур `l1_weight` и `taylor`
+
+```bash
+python -m project_rank.build_pruning_architectures \
+  --architectures results/rank_analysis_seed1/architectures_v2.json \
+  --scores results/rank_analysis_seed1/pruning_scores.json \
+  --output results/rank_analysis_seed1/architectures_v3.json
+```
+
+Файл `architectures_v3.json` сохраняет все прежние архитектуры и добавляет
+`l1_weight` и `taylor` для бюджетов `p080` и `p060`.
+
+### 14. Подготовка обучений для классических критериев
+
+```bash
+python -m project_rank.prepare_classic_experiments \
+  --base-config configs/baseline.json \
+  --architectures results/rank_analysis_seed1/architectures_v3.json \
+  --output-dir configs/generated_v3
+```
+
+Создаются два запуска `p080` для `seed1` и шесть запусков `p060` для `seed1`,
+`seed2`, `seed3`. Все восемь моделей обучаются с нуля 160 эпох. Полный список
+команд приведен в `V06_RUNBOOK.md`.
+
+### 15. Проверка чувствительности отдельных блоков
+
+```bash
+python -m project_rank.layer_sensitivity \
+  --config configs/baseline.json \
+  --checkpoint results/baseline_seed1/best.pt \
+  --ranks results/rank_analysis_seed1/ranks.csv \
+  --scores results/rank_analysis_seed1/pruning_scores.json \
+  --output-dir results/layer_sensitivity_seed1 \
+  --reduction-ratio 0.25
+```
+
+Каждый из девяти блоков по очереди сужается на 25%, остальные блоки не
+меняются. Веса переносятся по одному правилу L1, после чего измеряется падение
+validation accuracy без дообучения. Результат показывает, какие блоки
+действительно чувствительнее к потере каналов. Дополнительно рассчитывается
+корреляция этого падения с ERank, `l1_weight` и `taylor`.
+
+## Ограничения эксперимента
 
 - Выполняется одна итерация поиска архитектуры.
 - Основной анализ относится только к ResNet-20 и CIFAR-10.
-- Пока нет L1-, Network Slimming-, Taylor- и HRank-baseline как отдельных
-  способов выбора ширины.
+- Network Slimming и HRank пока не реализованы.
 - Эффективный ранг — эвристика. Значение ранга не равно гарантированно
   допустимому числу каналов.
 - Повторные seed используют фиксированные архитектуры, найденные по baseline
@@ -274,6 +340,11 @@ python -m project_rank.plot_results \
   --data reports/data/final_results.json \
   --output-dir reports/figures
 ```
+
+Команда строит шесть графиков, включая кривые качество–размер для всех методов
+и анализ чувствительности блоков. Кривая `quality_size_seed1.png` объединяет
+результаты `baseline`, `p080` и `p060` для `erank_per_image`, `erank_pooled`,
+`uniform`, `random`, `l1_weight` и `taylor`.
 
 Итоговый отчёт находится в `reports/REPORT.md`. Все рисунки, на которые он
 ссылается, находятся в каталоге `reports/figures/`.

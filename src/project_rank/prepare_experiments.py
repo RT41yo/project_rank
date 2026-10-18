@@ -32,8 +32,8 @@ def prepare_experiments(
     fine_tune_epochs: int,
     fine_tune_lr: float,
 ) -> dict[str, Any]:
-    if architecture_report.get("schema_version") != 2:
-        raise ValueError("Expected architecture report schema_version=2")
+    if architecture_report.get("schema_version") not in {2, 3}:
+        raise ValueError("Expected architecture report schema_version=2 or 3")
     if tuple(baseline_checkpoint["inner_widths"]) != tuple(DEFAULT_INNER_WIDTHS):
         raise ValueError("Baseline checkpoint must contain the full ResNet-20")
 

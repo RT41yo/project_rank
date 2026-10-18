@@ -11,6 +11,7 @@ from project_rank.spec import (
     DEFAULT_INNER_WIDTHS,
     count_resnet20_parameters,
 )
+from project_rank.pruning_criteria import l2_normalize
 
 
 @dataclass(frozen=True)
@@ -266,4 +267,125 @@ def multi_budget_architecture_report(
         },
         "budgets": budgets,
     }
+
+
+def make_pruning_architecture(
+    channel_scores: Sequence[Sequence[float]],
+    target_parameters: int,
+    name: str,
+    base_widths: Sequence[int] = DEFAULT_INNER_WIDTHS,
+    minimum: int = 4,
+    multiple: int = 2,
+) -> Architecture:
+    """Build a cost-aware structured-pruning architecture.
+
+    Scores are normalized independently for every layer, matching the common
+    global-pruning practice for criteria whose raw scales differ by layer.
+    At every step the least important removable channel group per saved
+    parameter is pruned. The closest state on that greedy path is returned.
+    """
+    if len(channel_scores) != len(base_widths):
+        raise ValueError("Expected one channel-score vector for every block")
+    if minimum < 1 or multiple < 1 or minimum % multiple != 0:
+        raise ValueError("minimum must be positive and divisible by multiple")
+
+    normalized: list[list[float]] = []
+    for scores, width in zip(channel_scores, base_widths, strict=True):
+        if len(scores) != width:
+            raise ValueError(
+                f"Expected {width} channel scores for a block, got {len(scores)}"
+            )
+        normalized.append(sorted(l2_normalize(scores)))
+
+    widths = tuple(int(value) for value in base_widths)
+    removed = [0] * len(widths)
+    path = [widths]
+    while any(width > minimum for width in widths):
+        current_parameters = count_resnet20_parameters(widths)
+        candidates: list[tuple[float, int, tuple[int, ...]]] = []
+        for index, width in enumerate(widths):
+            if width - multiple < minimum:
+                continue
+            candidate = list(widths)
+            candidate[index] -= multiple
+            candidate_widths = tuple(candidate)
+            saving = current_parameters - count_resnet20_parameters(candidate_widths)
+            start = removed[index]
+            group_score = sum(normalized[index][start : start + multiple])
+            candidates.append((group_score / saving, index, candidate_widths))
+        if not candidates:
+            break
+        _, selected_index, widths = min(candidates, key=lambda item: (item[0], item[1]))
+        removed[selected_index] += multiple
+        path.append(widths)
+
+    best = min(
+        path,
+        key=lambda item: (
+            abs(count_resnet20_parameters(item) - target_parameters),
+            count_resnet20_parameters(item) > target_parameters,
+        ),
+    )
+    return Architecture(name, best, count_resnet20_parameters(best))
+
+
+def extend_with_pruning_architectures(
+    architecture_report: dict[str, object],
+    scores_by_method: dict[str, Sequence[Sequence[float]]],
+) -> dict[str, object]:
+    """Append L1/Taylor architectures to a schema-v2 ERank report."""
+    if architecture_report.get("schema_version") != 2:
+        raise ValueError("Expected an architecture report with schema_version=2")
+    expected_methods = {"l1_weight", "taylor"}
+    if set(scores_by_method) != expected_methods:
+        raise ValueError(f"Expected pruning methods {sorted(expected_methods)}")
+
+    report = {
+        **architecture_report,
+        "schema_version": 3,
+        "pruning_policy": {
+            "score_normalization": "layer_l2",
+            "selection": "lowest normalized score per saved parameter",
+            "channel_group": 2,
+            "minimum_width": 4,
+        },
+    }
+    full_parameters = int(report["full_architecture"]["parameters"])
+    updated_budgets: list[dict[str, object]] = []
+    for original_budget in report["budgets"]:
+        budget = dict(original_budget)
+        architectures = [dict(item) for item in budget["architectures"]]
+        reference_parameters = int(budget["reference_parameters"])
+        for method in ("l1_weight", "taylor"):
+            architecture = make_pruning_architecture(
+                scores_by_method[method],
+                reference_parameters,
+                name=method,
+            )
+            entry = architecture.to_dict()
+            entry["parameter_ratio_vs_full"] = architecture.parameters / full_parameters
+            entry["difference_vs_reference_percent"] = (
+                100.0
+                * (architecture.parameters - reference_parameters)
+                / reference_parameters
+            )
+            entry["rank_source"] = None
+            entry["pruning_score_source"] = method
+            architectures.append(entry)
+
+        width_groups: dict[tuple[int, ...], list[str]] = {}
+        for item in architectures:
+            widths = tuple(int(value) for value in item["inner_widths"])
+            width_groups.setdefault(widths, []).append(str(item["name"]))
+        budget["architectures"] = architectures
+        budget["equivalent_architectures"] = [
+            names for names in width_groups.values() if len(names) > 1
+        ]
+        budget["max_absolute_difference_vs_reference_percent"] = max(
+            abs(float(item["difference_vs_reference_percent"]))
+            for item in architectures
+        )
+        updated_budgets.append(budget)
+    report["budgets"] = updated_budgets
+    return report
 

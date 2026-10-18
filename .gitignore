@@ -13,6 +13,7 @@ data/
 external/
 results/*
 !results/summary_v04/
+!results/summary_v06/
 !results/.gitkeep
 *.pt
 *.pth

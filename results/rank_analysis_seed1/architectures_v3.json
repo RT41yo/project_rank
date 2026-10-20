@@ -1,0 +1,323 @@
+{
+  "schema_version": 3,
+  "full_architecture": {
+    "name": "full",
+    "inner_widths": [
+      16,
+      16,
+      16,
+      32,
+      32,
+      32,
+      64,
+      64,
+      64
+    ],
+    "parameters": 272474
+  },
+  "channel_rounding": {
+    "erank": 2,
+    "random": 2,
+    "uniform": "best of integer and even grids",
+    "minimum_width": 4
+  },
+  "budgets": [
+    {
+      "label": "p080",
+      "requested_parameter_ratio": 0.8,
+      "requested_parameters": 217979,
+      "reference_architecture": "erank_pooled",
+      "reference_parameters": 218766,
+      "architectures": [
+        {
+          "name": "erank_pooled",
+          "inner_widths": [
+            12,
+            12,
+            12,
+            24,
+            26,
+            26,
+            50,
+            52,
+            52
+          ],
+          "parameters": 218766,
+          "parameter_ratio_vs_full": 0.8028876149650976,
+          "difference_vs_reference_percent": 0.0,
+          "rank_source": "pooled_effective_rank"
+        },
+        {
+          "name": "erank_per_image",
+          "inner_widths": [
+            14,
+            16,
+            16,
+            32,
+            32,
+            32,
+            50,
+            50,
+            42
+          ],
+          "parameters": 218226,
+          "parameter_ratio_vs_full": 0.8009057744959152,
+          "difference_vs_reference_percent": -0.24683908834096707,
+          "rank_source": "mean_per_image_effective_rank"
+        },
+        {
+          "name": "erank_weight",
+          "inner_widths": [
+            12,
+            12,
+            12,
+            24,
+            26,
+            26,
+            50,
+            52,
+            52
+          ],
+          "parameters": 218766,
+          "parameter_ratio_vs_full": 0.8028876149650976,
+          "difference_vs_reference_percent": 0.0,
+          "rank_source": "weight_effective_rank"
+        },
+        {
+          "name": "uniform",
+          "inner_widths": [
+            13,
+            13,
+            13,
+            26,
+            26,
+            26,
+            51,
+            51,
+            51
+          ],
+          "parameters": 219062,
+          "parameter_ratio_vs_full": 0.803973957148205,
+          "difference_vs_reference_percent": 0.13530438916467824,
+          "rank_source": null
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            14,
+            12,
+            14,
+            28,
+            18,
+            22,
+            60,
+            48,
+            52
+          ],
+          "parameters": 218770,
+          "parameter_ratio_vs_full": 0.8029022952648693,
+          "difference_vs_reference_percent": 0.0018284376914145708,
+          "rank_source": null
+        },
+        {
+          "name": "l1_weight",
+          "inner_widths": [
+            16,
+            16,
+            16,
+            32,
+            32,
+            32,
+            64,
+            42,
+            40
+          ],
+          "parameters": 219390,
+          "parameter_ratio_vs_full": 0.8051777417294861,
+          "difference_vs_reference_percent": 0.28523627986067307,
+          "rank_source": null,
+          "pruning_score_source": "l1_weight"
+        },
+        {
+          "name": "taylor",
+          "inner_widths": [
+            16,
+            16,
+            16,
+            32,
+            32,
+            32,
+            62,
+            42,
+            40
+          ],
+          "parameters": 217658,
+          "parameter_ratio_vs_full": 0.7988211719283308,
+          "difference_vs_reference_percent": -0.5064772405218361,
+          "rank_source": null,
+          "pruning_score_source": "taylor"
+        }
+      ],
+      "equivalent_architectures": [
+        [
+          "erank_pooled",
+          "erank_weight"
+        ]
+      ],
+      "max_absolute_difference_vs_reference_percent": 0.5064772405218361
+    },
+    {
+      "label": "p060",
+      "requested_parameter_ratio": 0.6,
+      "requested_parameters": 163484,
+      "reference_architecture": "erank_pooled",
+      "reference_parameters": 162470,
+      "architectures": [
+        {
+          "name": "erank_pooled",
+          "inner_widths": [
+            8,
+            10,
+            10,
+            18,
+            20,
+            20,
+            36,
+            38,
+            38
+          ],
+          "parameters": 162470,
+          "parameter_ratio_vs_full": 0.5962770759778915,
+          "difference_vs_reference_percent": 0.0,
+          "rank_source": "pooled_effective_rank"
+        },
+        {
+          "name": "erank_per_image",
+          "inner_widths": [
+            10,
+            12,
+            14,
+            24,
+            26,
+            26,
+            36,
+            36,
+            30
+          ],
+          "parameters": 162790,
+          "parameter_ratio_vs_full": 0.5974514999596292,
+          "difference_vs_reference_percent": 0.1969594386655998,
+          "rank_source": "mean_per_image_effective_rank"
+        },
+        {
+          "name": "erank_weight",
+          "inner_widths": [
+            8,
+            10,
+            10,
+            18,
+            20,
+            20,
+            36,
+            38,
+            38
+          ],
+          "parameters": 162470,
+          "parameter_ratio_vs_full": 0.5962770759778915,
+          "difference_vs_reference_percent": 0.0,
+          "rank_source": "weight_effective_rank"
+        },
+        {
+          "name": "uniform",
+          "inner_widths": [
+            10,
+            10,
+            10,
+            18,
+            18,
+            18,
+            38,
+            38,
+            38
+          ],
+          "parameters": 162470,
+          "parameter_ratio_vs_full": 0.5962770759778915,
+          "difference_vs_reference_percent": 0.0,
+          "rank_source": null
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            8,
+            8,
+            16,
+            26,
+            26,
+            4,
+            24,
+            44,
+            42
+          ],
+          "parameters": 162470,
+          "parameter_ratio_vs_full": 0.5962770759778915,
+          "difference_vs_reference_percent": 0.0,
+          "rank_source": null
+        },
+        {
+          "name": "l1_weight",
+          "inner_widths": [
+            16,
+            16,
+            16,
+            32,
+            32,
+            32,
+            64,
+            16,
+            16
+          ],
+          "parameters": 161690,
+          "parameter_ratio_vs_full": 0.5934144175224058,
+          "difference_vs_reference_percent": -0.4800886317473995,
+          "rank_source": null,
+          "pruning_score_source": "l1_weight"
+        },
+        {
+          "name": "taylor",
+          "inner_widths": [
+            16,
+            16,
+            16,
+            30,
+            32,
+            32,
+            52,
+            22,
+            20
+          ],
+          "parameters": 161970,
+          "parameter_ratio_vs_full": 0.5944420385064263,
+          "difference_vs_reference_percent": -0.3077491229149997,
+          "rank_source": null,
+          "pruning_score_source": "taylor"
+        }
+      ],
+      "equivalent_architectures": [
+        [
+          "erank_pooled",
+          "erank_weight"
+        ]
+      ],
+      "max_absolute_difference_vs_reference_percent": 0.4800886317473995
+    }
+  ],
+  "source_ranks": "results/rank_analysis_seed1/ranks.csv",
+  "pruning_policy": {
+    "score_normalization": "layer_l2",
+    "selection": "lowest normalized score per saved parameter",
+    "channel_group": 2,
+    "minimum_width": 4
+  },
+  "source_architectures": "results/rank_analysis_seed1/architectures_v2.json",
+  "source_pruning_scores": "results/rank_analysis_seed1/pruning_scores.json"
+}

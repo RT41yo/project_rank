@@ -14,9 +14,10 @@ external/
 results/*
 !results/summary_v04/
 !results/summary_v06/
+!results/rank_analysis_seed1/
+!results/rank_analysis_seed1/**
 !results/.gitkeep
 *.pt
 *.pth
 *.ckpt
 *.onnx
-

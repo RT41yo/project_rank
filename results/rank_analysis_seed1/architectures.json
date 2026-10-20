@@ -1,0 +1,75 @@
+{
+  "target_parameter_ratio": 0.6,
+  "architectures": [
+    {
+      "name": "full",
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        64,
+        64
+      ],
+      "parameters": 272474,
+      "parameter_ratio_vs_full": 1.0,
+      "difference_vs_erank_percent": 67.70726903428326
+    },
+    {
+      "name": "erank",
+      "inner_widths": [
+        8,
+        10,
+        10,
+        18,
+        20,
+        20,
+        36,
+        38,
+        38
+      ],
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "difference_vs_erank_percent": 0.0
+    },
+    {
+      "name": "uniform",
+      "inner_widths": [
+        10,
+        10,
+        10,
+        18,
+        18,
+        18,
+        38,
+        38,
+        38
+      ],
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "difference_vs_erank_percent": 0.0
+    },
+    {
+      "name": "random",
+      "inner_widths": [
+        16,
+        14,
+        12,
+        6,
+        16,
+        12,
+        48,
+        16,
+        58
+      ],
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "difference_vs_erank_percent": 0.0
+    }
+  ],
+  "rank_source": "pooled_effective_rank",
+  "max_validation_samples": 5000
+}

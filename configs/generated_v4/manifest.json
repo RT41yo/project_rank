@@ -1,0 +1,3228 @@
+{
+  "schema_version": 1,
+  "experiment_family": "one_shot_scratch_grid",
+  "train_seed": 1,
+  "budgets": [
+    "p090",
+    "p080",
+    "p070",
+    "p060",
+    "p050",
+    "p040",
+    "p030"
+  ],
+  "methods": [
+    "erank_per_image",
+    "erank_pooled",
+    "erank_weight",
+    "l1_weight",
+    "taylor",
+    "uniform"
+  ],
+  "random_architecture_seeds_requested": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010
+  ],
+  "full_parameters": 272474,
+  "experiments": [
+    {
+      "run": "p090_erank_per_image_scratch_seed1",
+      "budget": "p090",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 244198,
+      "parameter_ratio_vs_full": 0.8962249609137019,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        58,
+        58,
+        50
+      ],
+      "config": "configs/generated_v4/p090_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p090_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p090_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_erank_pooled_scratch_seed1",
+      "budget": "p090",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled",
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 244178,
+      "parameter_ratio_vs_full": 0.8961515594148433,
+      "inner_widths": [
+        14,
+        14,
+        14,
+        28,
+        30,
+        30,
+        54,
+        58,
+        58
+      ],
+      "config": "configs/generated_v4/p090_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p090_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p090_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_l1_weight_scratch_seed1",
+      "budget": "p090",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 244778,
+      "parameter_ratio_vs_full": 0.8983536043806014,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        56,
+        48
+      ],
+      "config": "configs/generated_v4/p090_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p090_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p090_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_taylor_scratch_seed1",
+      "budget": "p090",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 243046,
+      "parameter_ratio_vs_full": 0.8919970345794461,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        62,
+        54,
+        50
+      ],
+      "config": "configs/generated_v4/p090_taylor_scratch_seed1.json",
+      "result_dir": "results/p090_taylor_scratch_seed1",
+      "effective_result_dir": "results/p090_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_uniform_scratch_seed1",
+      "budget": "p090",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 243746,
+      "parameter_ratio_vs_full": 0.8945660870394974,
+      "inner_widths": [
+        14,
+        14,
+        14,
+        29,
+        29,
+        29,
+        57,
+        57,
+        57
+      ],
+      "config": "configs/generated_v4/p090_uniform_scratch_seed1.json",
+      "result_dir": "results/p090_uniform_scratch_seed1",
+      "effective_result_dir": "results/p090_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1001_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 244158,
+      "parameter_ratio_vs_full": 0.8960781579159847,
+      "inner_widths": [
+        14,
+        16,
+        16,
+        20,
+        30,
+        12,
+        58,
+        62,
+        62
+      ],
+      "config": "configs/generated_v4/p090_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1001_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1002_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 244134,
+      "parameter_ratio_vs_full": 0.8959900761173543,
+      "inner_widths": [
+        14,
+        14,
+        4,
+        16,
+        28,
+        14,
+        62,
+        64,
+        62
+      ],
+      "config": "configs/generated_v4/p090_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1002_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1003_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 244150,
+      "parameter_ratio_vs_full": 0.8960487973164412,
+      "inner_widths": [
+        4,
+        4,
+        12,
+        32,
+        28,
+        28,
+        62,
+        60,
+        56
+      ],
+      "config": "configs/generated_v4/p090_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1004_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 244422,
+      "parameter_ratio_vs_full": 0.8970470577009183,
+      "inner_widths": [
+        10,
+        16,
+        4,
+        30,
+        10,
+        16,
+        64,
+        64,
+        64
+      ],
+      "config": "configs/generated_v4/p090_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1005_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 244162,
+      "parameter_ratio_vs_full": 0.8960928382157564,
+      "inner_widths": [
+        8,
+        16,
+        14,
+        24,
+        28,
+        30,
+        48,
+        64,
+        60
+      ],
+      "config": "configs/generated_v4/p090_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1006_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 244142,
+      "parameter_ratio_vs_full": 0.8960194367168978,
+      "inner_widths": [
+        6,
+        10,
+        6,
+        32,
+        30,
+        20,
+        52,
+        64,
+        62
+      ],
+      "config": "configs/generated_v4/p090_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1007_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 244430,
+      "parameter_ratio_vs_full": 0.8970764183004617,
+      "inner_widths": [
+        16,
+        14,
+        6,
+        6,
+        28,
+        30,
+        58,
+        60,
+        64
+      ],
+      "config": "configs/generated_v4/p090_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1008_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 244150,
+      "parameter_ratio_vs_full": 0.8960487973164412,
+      "inner_widths": [
+        16,
+        4,
+        14,
+        20,
+        28,
+        26,
+        54,
+        60,
+        64
+      ],
+      "config": "configs/generated_v4/p090_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1009_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 244162,
+      "parameter_ratio_vs_full": 0.8960928382157564,
+      "inner_widths": [
+        4,
+        14,
+        8,
+        32,
+        26,
+        32,
+        64,
+        60,
+        52
+      ],
+      "config": "configs/generated_v4/p090_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p090_random_arch1010_scratch_seed1",
+      "budget": "p090",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 244110,
+      "parameter_ratio_vs_full": 0.895901994318724,
+      "inner_widths": [
+        6,
+        8,
+        4,
+        4,
+        24,
+        30,
+        62,
+        64,
+        64
+      ],
+      "config": "configs/generated_v4/p090_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p090_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p090_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_erank_per_image_scratch_seed1",
+      "budget": "p080",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 218226,
+      "parameter_ratio_vs_full": 0.8009057744959152,
+      "inner_widths": [
+        14,
+        16,
+        16,
+        32,
+        32,
+        32,
+        50,
+        50,
+        42
+      ],
+      "config": "configs/generated_v4/p080_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p080_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p080_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_erank_pooled_scratch_seed1",
+      "budget": "p080",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled",
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 218766,
+      "parameter_ratio_vs_full": 0.8028876149650976,
+      "inner_widths": [
+        12,
+        12,
+        12,
+        24,
+        26,
+        26,
+        50,
+        52,
+        52
+      ],
+      "config": "configs/generated_v4/p080_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p080_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p080_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_l1_weight_scratch_seed1",
+      "budget": "p080",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 219390,
+      "parameter_ratio_vs_full": 0.8051777417294861,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        42,
+        40
+      ],
+      "config": "configs/generated_v4/p080_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p080_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p080_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_taylor_scratch_seed1",
+      "budget": "p080",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 217658,
+      "parameter_ratio_vs_full": 0.7988211719283308,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        62,
+        42,
+        40
+      ],
+      "config": "configs/generated_v4/p080_taylor_scratch_seed1.json",
+      "result_dir": "results/p080_taylor_scratch_seed1",
+      "effective_result_dir": "results/p080_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_uniform_scratch_seed1",
+      "budget": "p080",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 219062,
+      "parameter_ratio_vs_full": 0.803973957148205,
+      "inner_widths": [
+        13,
+        13,
+        13,
+        26,
+        26,
+        26,
+        51,
+        51,
+        51
+      ],
+      "config": "configs/generated_v4/p080_uniform_scratch_seed1.json",
+      "result_dir": "results/p080_uniform_scratch_seed1",
+      "effective_result_dir": "results/p080_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1001_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 218770,
+      "parameter_ratio_vs_full": 0.8029022952648693,
+      "inner_widths": [
+        14,
+        12,
+        14,
+        28,
+        18,
+        22,
+        60,
+        48,
+        52
+      ],
+      "config": "configs/generated_v4/p080_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p080_random_scratch_seed1",
+      "existing_legacy_run": "results/p080_random_scratch_seed1",
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1002_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 218758,
+      "parameter_ratio_vs_full": 0.8028582543655541,
+      "inner_widths": [
+        8,
+        10,
+        10,
+        32,
+        28,
+        16,
+        54,
+        48,
+        56
+      ],
+      "config": "configs/generated_v4/p080_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1002_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1003_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 218758,
+      "parameter_ratio_vs_full": 0.8028582543655541,
+      "inner_widths": [
+        8,
+        14,
+        12,
+        24,
+        22,
+        20,
+        60,
+        48,
+        54
+      ],
+      "config": "configs/generated_v4/p080_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1004_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 218750,
+      "parameter_ratio_vs_full": 0.8028288937660107,
+      "inner_widths": [
+        8,
+        14,
+        12,
+        28,
+        24,
+        6,
+        58,
+        50,
+        58
+      ],
+      "config": "configs/generated_v4/p080_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1005_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 218766,
+      "parameter_ratio_vs_full": 0.8028876149650976,
+      "inner_widths": [
+        6,
+        8,
+        10,
+        32,
+        28,
+        28,
+        58,
+        38,
+        58
+      ],
+      "config": "configs/generated_v4/p080_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1006_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 218766,
+      "parameter_ratio_vs_full": 0.8028876149650976,
+      "inner_widths": [
+        16,
+        10,
+        10,
+        28,
+        26,
+        18,
+        56,
+        40,
+        62
+      ],
+      "config": "configs/generated_v4/p080_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1007_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 218746,
+      "parameter_ratio_vs_full": 0.8028142134662389,
+      "inner_widths": [
+        10,
+        6,
+        10,
+        24,
+        30,
+        12,
+        60,
+        60,
+        44
+      ],
+      "config": "configs/generated_v4/p080_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1008_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 218758,
+      "parameter_ratio_vs_full": 0.8028582543655541,
+      "inner_widths": [
+        14,
+        14,
+        16,
+        32,
+        8,
+        14,
+        50,
+        50,
+        64
+      ],
+      "config": "configs/generated_v4/p080_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1009_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 218766,
+      "parameter_ratio_vs_full": 0.8028876149650976,
+      "inner_widths": [
+        16,
+        12,
+        12,
+        24,
+        26,
+        14,
+        62,
+        48,
+        52
+      ],
+      "config": "configs/generated_v4/p080_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p080_random_arch1010_scratch_seed1",
+      "budget": "p080",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 218762,
+      "parameter_ratio_vs_full": 0.8028729346653258,
+      "inner_widths": [
+        14,
+        12,
+        8,
+        24,
+        32,
+        14,
+        60,
+        58,
+        42
+      ],
+      "config": "configs/generated_v4/p080_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p080_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p080_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_erank_per_image_scratch_seed1",
+      "budget": "p070",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 190514,
+      "parameter_ratio_vs_full": 0.6992006576774298,
+      "inner_widths": [
+        12,
+        16,
+        16,
+        28,
+        30,
+        30,
+        42,
+        42,
+        36
+      ],
+      "config": "configs/generated_v4/p070_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p070_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p070_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_erank_pooled_scratch_seed1",
+      "budget": "p070",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        10,
+        12,
+        10,
+        22,
+        22,
+        24,
+        42,
+        46,
+        44
+      ],
+      "config": "configs/generated_v4/p070_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p070_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p070_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_erank_weight_scratch_seed1",
+      "budget": "p070",
+      "method": "erank_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 189030,
+      "parameter_ratio_vs_full": 0.6937542664621211,
+      "inner_widths": [
+        10,
+        12,
+        10,
+        22,
+        22,
+        22,
+        42,
+        46,
+        44
+      ],
+      "config": "configs/generated_v4/p070_erank_weight_scratch_seed1.json",
+      "result_dir": "results/p070_erank_weight_scratch_seed1",
+      "effective_result_dir": "results/p070_erank_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_l1_weight_scratch_seed1",
+      "budget": "p070",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 189386,
+      "parameter_ratio_vs_full": 0.6950608131418043,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        28,
+        28
+      ],
+      "config": "configs/generated_v4/p070_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p070_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p070_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_taylor_scratch_seed1",
+      "budget": "p070",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 189382,
+      "parameter_ratio_vs_full": 0.6950461328420326,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        56,
+        32,
+        30
+      ],
+      "config": "configs/generated_v4/p070_taylor_scratch_seed1.json",
+      "result_dir": "results/p070_taylor_scratch_seed1",
+      "effective_result_dir": "results/p070_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_uniform_scratch_seed1",
+      "budget": "p070",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 189614,
+      "parameter_ratio_vs_full": 0.6958975902287925,
+      "inner_widths": [
+        12,
+        12,
+        12,
+        22,
+        22,
+        22,
+        44,
+        44,
+        44
+      ],
+      "config": "configs/generated_v4/p070_uniform_scratch_seed1.json",
+      "result_dir": "results/p070_uniform_scratch_seed1",
+      "effective_result_dir": "results/p070_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1001_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        14,
+        16,
+        14,
+        22,
+        18,
+        6,
+        50,
+        56,
+        36
+      ],
+      "config": "configs/generated_v4/p070_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1001_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1002_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        14,
+        8,
+        16,
+        22,
+        28,
+        22,
+        16,
+        60,
+        46
+      ],
+      "config": "configs/generated_v4/p070_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1002_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1003_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        6,
+        14,
+        8,
+        26,
+        16,
+        22,
+        60,
+        26,
+        54
+      ],
+      "config": "configs/generated_v4/p070_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1004_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        16,
+        10,
+        4,
+        18,
+        28,
+        18,
+        58,
+        28,
+        52
+      ],
+      "config": "configs/generated_v4/p070_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1005_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        6,
+        6,
+        10,
+        30,
+        22,
+        22,
+        56,
+        42,
+        38
+      ],
+      "config": "configs/generated_v4/p070_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1006_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        12,
+        16,
+        4,
+        26,
+        24,
+        16,
+        44,
+        44,
+        46
+      ],
+      "config": "configs/generated_v4/p070_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1007_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        12,
+        16,
+        6,
+        30,
+        18,
+        22,
+        28,
+        40,
+        60
+      ],
+      "config": "configs/generated_v4/p070_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1008_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        16,
+        16,
+        12,
+        22,
+        10,
+        12,
+        54,
+        26,
+        64
+      ],
+      "config": "configs/generated_v4/p070_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1009_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        10,
+        6,
+        14,
+        26,
+        10,
+        24,
+        62,
+        58,
+        22
+      ],
+      "config": "configs/generated_v4/p070_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p070_random_arch1010_scratch_seed1",
+      "budget": "p070",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 190186,
+      "parameter_ratio_vs_full": 0.6979968730961487,
+      "inner_widths": [
+        14,
+        8,
+        16,
+        22,
+        16,
+        10,
+        64,
+        34,
+        48
+      ],
+      "config": "configs/generated_v4/p070_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p070_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p070_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_erank_per_image_scratch_seed1",
+      "budget": "p060",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 162790,
+      "parameter_ratio_vs_full": 0.5974514999596292,
+      "inner_widths": [
+        10,
+        12,
+        14,
+        24,
+        26,
+        26,
+        36,
+        36,
+        30
+      ],
+      "config": "configs/generated_v4/p060_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p060_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p060_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_erank_pooled_scratch_seed1",
+      "budget": "p060",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled",
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        8,
+        10,
+        10,
+        18,
+        20,
+        20,
+        36,
+        38,
+        38
+      ],
+      "config": "configs/generated_v4/p060_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p060_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p060_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_l1_weight_scratch_seed1",
+      "budget": "p060",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 161690,
+      "parameter_ratio_vs_full": 0.5934144175224058,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        64,
+        16,
+        16
+      ],
+      "config": "configs/generated_v4/p060_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p060_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p060_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_taylor_scratch_seed1",
+      "budget": "p060",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 161970,
+      "parameter_ratio_vs_full": 0.5944420385064263,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        30,
+        32,
+        32,
+        52,
+        22,
+        20
+      ],
+      "config": "configs/generated_v4/p060_taylor_scratch_seed1.json",
+      "result_dir": "results/p060_taylor_scratch_seed1",
+      "effective_result_dir": "results/p060_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_uniform_scratch_seed1",
+      "budget": "p060",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        10,
+        10,
+        10,
+        18,
+        18,
+        18,
+        38,
+        38,
+        38
+      ],
+      "config": "configs/generated_v4/p060_uniform_scratch_seed1.json",
+      "result_dir": "results/p060_uniform_scratch_seed1",
+      "effective_result_dir": "results/p060_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1001_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        16,
+        14,
+        12,
+        6,
+        16,
+        12,
+        48,
+        16,
+        58
+      ],
+      "config": "configs/generated_v4/p060_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1001_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1002_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        8,
+        8,
+        16,
+        26,
+        26,
+        4,
+        24,
+        44,
+        42
+      ],
+      "config": "configs/generated_v4/p060_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p060_random_scratch_seed1",
+      "existing_legacy_run": "results/p060_random_scratch_seed1",
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1003_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        10,
+        12,
+        14,
+        22,
+        4,
+        10,
+        54,
+        32,
+        40
+      ],
+      "config": "configs/generated_v4/p060_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1004_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        16,
+        14,
+        4,
+        6,
+        30,
+        28,
+        12,
+        62,
+        26
+      ],
+      "config": "configs/generated_v4/p060_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1005_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        16,
+        4,
+        4,
+        10,
+        22,
+        32,
+        40,
+        28,
+        42
+      ],
+      "config": "configs/generated_v4/p060_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1006_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        6,
+        16,
+        10,
+        26,
+        16,
+        4,
+        44,
+        18,
+        58
+      ],
+      "config": "configs/generated_v4/p060_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1007_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        16,
+        8,
+        16,
+        14,
+        8,
+        8,
+        58,
+        52,
+        18
+      ],
+      "config": "configs/generated_v4/p060_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1008_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        6,
+        10,
+        8,
+        14,
+        18,
+        28,
+        46,
+        34,
+        34
+      ],
+      "config": "configs/generated_v4/p060_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1009_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        14,
+        6,
+        14,
+        14,
+        30,
+        18,
+        12,
+        36,
+        54
+      ],
+      "config": "configs/generated_v4/p060_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p060_random_arch1010_scratch_seed1",
+      "budget": "p060",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 162470,
+      "parameter_ratio_vs_full": 0.5962770759778915,
+      "inner_widths": [
+        14,
+        14,
+        8,
+        22,
+        24,
+        4,
+        26,
+        40,
+        46
+      ],
+      "config": "configs/generated_v4/p060_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p060_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p060_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_erank_per_image_scratch_seed1",
+      "budget": "p050",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 137374,
+      "parameter_ratio_vs_full": 0.5041728752101118,
+      "inner_widths": [
+        8,
+        10,
+        10,
+        20,
+        22,
+        22,
+        30,
+        30,
+        26
+      ],
+      "config": "configs/generated_v4/p050_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p050_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p050_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_erank_pooled_scratch_seed1",
+      "budget": "p050",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled",
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        8,
+        8,
+        8,
+        14,
+        16,
+        16,
+        30,
+        32,
+        32
+      ],
+      "config": "configs/generated_v4/p050_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p050_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p050_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_l1_weight_scratch_seed1",
+      "budget": "p050",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 136878,
+      "parameter_ratio_vs_full": 0.5023525180384183,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        62,
+        4,
+        8
+      ],
+      "config": "configs/generated_v4/p050_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p050_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p050_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_taylor_scratch_seed1",
+      "budget": "p050",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 135422,
+      "parameter_ratio_vs_full": 0.4970088889215118,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        30,
+        32,
+        30,
+        44,
+        12,
+        14
+      ],
+      "config": "configs/generated_v4/p050_taylor_scratch_seed1.json",
+      "result_dir": "results/p050_taylor_scratch_seed1",
+      "effective_result_dir": "results/p050_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_uniform_scratch_seed1",
+      "budget": "p050",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 135332,
+      "parameter_ratio_vs_full": 0.49667858217664806,
+      "inner_widths": [
+        8,
+        8,
+        8,
+        16,
+        16,
+        16,
+        31,
+        31,
+        31
+      ],
+      "config": "configs/generated_v4/p050_uniform_scratch_seed1.json",
+      "result_dir": "results/p050_uniform_scratch_seed1",
+      "effective_result_dir": "results/p050_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1001_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        16,
+        4,
+        8,
+        6,
+        16,
+        4,
+        62,
+        6,
+        42
+      ],
+      "config": "configs/generated_v4/p050_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1001_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1002_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        4,
+        16,
+        4,
+        6,
+        26,
+        20,
+        22,
+        28,
+        38
+      ],
+      "config": "configs/generated_v4/p050_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1002_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1003_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        14,
+        6,
+        8,
+        14,
+        6,
+        4,
+        62,
+        26,
+        24
+      ],
+      "config": "configs/generated_v4/p050_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1004_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        12,
+        10,
+        8,
+        10,
+        4,
+        14,
+        50,
+        38,
+        18
+      ],
+      "config": "configs/generated_v4/p050_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1005_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        4,
+        16,
+        8,
+        22,
+        10,
+        6,
+        30,
+        44,
+        24
+      ],
+      "config": "configs/generated_v4/p050_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1006_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        16,
+        16,
+        4,
+        10,
+        6,
+        4,
+        48,
+        44,
+        16
+      ],
+      "config": "configs/generated_v4/p050_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1007_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        8,
+        16,
+        12,
+        18,
+        4,
+        10,
+        20,
+        40,
+        36
+      ],
+      "config": "configs/generated_v4/p050_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1008_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        16,
+        8,
+        8,
+        10,
+        10,
+        26,
+        8,
+        52,
+        26
+      ],
+      "config": "configs/generated_v4/p050_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1009_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        4,
+        16,
+        16,
+        10,
+        10,
+        22,
+        4,
+        50,
+        32
+      ],
+      "config": "configs/generated_v4/p050_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p050_random_arch1010_scratch_seed1",
+      "budget": "p050",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 135906,
+      "parameter_ratio_vs_full": 0.4987852051938901,
+      "inner_widths": [
+        12,
+        16,
+        4,
+        14,
+        16,
+        14,
+        10,
+        62,
+        16
+      ],
+      "config": "configs/generated_v4/p050_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p050_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p050_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_erank_per_image_scratch_seed1",
+      "budget": "p040",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 109654,
+      "parameter_ratio_vs_full": 0.4024383977920829,
+      "inner_widths": [
+        8,
+        8,
+        8,
+        16,
+        18,
+        16,
+        24,
+        24,
+        20
+      ],
+      "config": "configs/generated_v4/p040_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p040_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p040_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_erank_pooled_scratch_seed1",
+      "budget": "p040",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled",
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 109630,
+      "parameter_ratio_vs_full": 0.4023503159934526,
+      "inner_widths": [
+        6,
+        6,
+        6,
+        12,
+        12,
+        12,
+        24,
+        26,
+        26
+      ],
+      "config": "configs/generated_v4/p040_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p040_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p040_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_l1_weight_scratch_seed1",
+      "budget": "p040",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 109746,
+      "parameter_ratio_vs_full": 0.4027760446868325,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        36,
+        4,
+        4
+      ],
+      "config": "configs/generated_v4/p040_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p040_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p040_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_taylor_scratch_seed1",
+      "budget": "p040",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 110606,
+      "parameter_ratio_vs_full": 0.4059323091377526,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        30,
+        32,
+        30,
+        34,
+        4,
+        8
+      ],
+      "config": "configs/generated_v4/p040_taylor_scratch_seed1.json",
+      "result_dir": "results/p040_taylor_scratch_seed1",
+      "effective_result_dir": "results/p040_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_uniform_scratch_seed1",
+      "budget": "p040",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 109778,
+      "parameter_ratio_vs_full": 0.4028934870850063,
+      "inner_widths": [
+        6,
+        6,
+        6,
+        13,
+        13,
+        13,
+        25,
+        25,
+        25
+      ],
+      "config": "configs/generated_v4/p040_uniform_scratch_seed1.json",
+      "result_dir": "results/p040_uniform_scratch_seed1",
+      "effective_result_dir": "results/p040_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1001_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 109630,
+      "parameter_ratio_vs_full": 0.4023503159934526,
+      "inner_widths": [
+        4,
+        8,
+        12,
+        4,
+        26,
+        6,
+        10,
+        8,
+        52
+      ],
+      "config": "configs/generated_v4/p040_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1001_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1002_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 109634,
+      "parameter_ratio_vs_full": 0.4023649962932243,
+      "inner_widths": [
+        8,
+        6,
+        16,
+        8,
+        4,
+        4,
+        38,
+        44,
+        4
+      ],
+      "config": "configs/generated_v4/p040_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1002_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1003_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 109638,
+      "parameter_ratio_vs_full": 0.402379676592996,
+      "inner_widths": [
+        14,
+        8,
+        6,
+        20,
+        4,
+        10,
+        10,
+        14,
+        48
+      ],
+      "config": "configs/generated_v4/p040_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1004_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 109630,
+      "parameter_ratio_vs_full": 0.4023503159934526,
+      "inner_widths": [
+        6,
+        8,
+        6,
+        4,
+        6,
+        26,
+        22,
+        18,
+        34
+      ],
+      "config": "configs/generated_v4/p040_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1005_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 109630,
+      "parameter_ratio_vs_full": 0.4023503159934526,
+      "inner_widths": [
+        10,
+        8,
+        16,
+        4,
+        6,
+        12,
+        8,
+        56,
+        10
+      ],
+      "config": "configs/generated_v4/p040_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1006_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 109626,
+      "parameter_ratio_vs_full": 0.40233563569368086,
+      "inner_widths": [
+        8,
+        16,
+        4,
+        16,
+        6,
+        4,
+        4,
+        12,
+        58
+      ],
+      "config": "configs/generated_v4/p040_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1007_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 109630,
+      "parameter_ratio_vs_full": 0.4023503159934526,
+      "inner_widths": [
+        4,
+        10,
+        8,
+        16,
+        8,
+        12,
+        10,
+        48,
+        14
+      ],
+      "config": "configs/generated_v4/p040_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1008_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 109630,
+      "parameter_ratio_vs_full": 0.4023503159934526,
+      "inner_widths": [
+        12,
+        4,
+        4,
+        8,
+        4,
+        24,
+        20,
+        16,
+        38
+      ],
+      "config": "configs/generated_v4/p040_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1009_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 109634,
+      "parameter_ratio_vs_full": 0.4023649962932243,
+      "inner_widths": [
+        8,
+        4,
+        4,
+        4,
+        20,
+        8,
+        50,
+        26,
+        8
+      ],
+      "config": "configs/generated_v4/p040_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p040_random_arch1010_scratch_seed1",
+      "budget": "p040",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 109638,
+      "parameter_ratio_vs_full": 0.402379676592996,
+      "inner_widths": [
+        12,
+        8,
+        8,
+        16,
+        4,
+        8,
+        24,
+        24,
+        30
+      ],
+      "config": "configs/generated_v4/p040_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p040_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p040_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_erank_per_image_scratch_seed1",
+      "budget": "p030",
+      "method": "erank_per_image",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_per_image"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 81354,
+      "parameter_ratio_vs_full": 0.29857527690715446,
+      "inner_widths": [
+        6,
+        6,
+        6,
+        12,
+        12,
+        12,
+        18,
+        18,
+        14
+      ],
+      "config": "configs/generated_v4/p030_erank_per_image_scratch_seed1.json",
+      "result_dir": "results/p030_erank_per_image_scratch_seed1",
+      "effective_result_dir": "results/p030_erank_per_image_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_erank_pooled_scratch_seed1",
+      "budget": "p030",
+      "method": "erank_pooled",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "erank_pooled",
+        "erank_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 82490,
+      "parameter_ratio_vs_full": 0.3027444820423233,
+      "inner_widths": [
+        4,
+        4,
+        4,
+        8,
+        10,
+        10,
+        18,
+        20,
+        18
+      ],
+      "config": "configs/generated_v4/p030_erank_pooled_scratch_seed1.json",
+      "result_dir": "results/p030_erank_pooled_scratch_seed1",
+      "effective_result_dir": "results/p030_erank_pooled_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_l1_weight_scratch_seed1",
+      "budget": "p030",
+      "method": "l1_weight",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "l1_weight"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 82034,
+      "parameter_ratio_vs_full": 0.30107092786834705,
+      "inner_widths": [
+        16,
+        16,
+        16,
+        32,
+        32,
+        32,
+        4,
+        4,
+        4
+      ],
+      "config": "configs/generated_v4/p030_l1_weight_scratch_seed1.json",
+      "result_dir": "results/p030_l1_weight_scratch_seed1",
+      "effective_result_dir": "results/p030_l1_weight_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_taylor_scratch_seed1",
+      "budget": "p030",
+      "method": "taylor",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "taylor"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 82894,
+      "parameter_ratio_vs_full": 0.30422719231926715,
+      "inner_widths": [
+        14,
+        16,
+        16,
+        30,
+        32,
+        30,
+        8,
+        4,
+        4
+      ],
+      "config": "configs/generated_v4/p030_taylor_scratch_seed1.json",
+      "result_dir": "results/p030_taylor_scratch_seed1",
+      "effective_result_dir": "results/p030_taylor_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_uniform_scratch_seed1",
+      "budget": "p030",
+      "method": "uniform",
+      "method_family": "deterministic_width_rule",
+      "aliases": [
+        "uniform"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": null,
+      "parameters": 83504,
+      "parameter_ratio_vs_full": 0.30646593803445465,
+      "inner_widths": [
+        5,
+        5,
+        5,
+        9,
+        9,
+        9,
+        19,
+        19,
+        19
+      ],
+      "config": "configs/generated_v4/p030_uniform_scratch_seed1.json",
+      "result_dir": "results/p030_uniform_scratch_seed1",
+      "effective_result_dir": "results/p030_uniform_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1001_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1001,
+      "parameters": 82510,
+      "parameter_ratio_vs_full": 0.3028178835411819,
+      "inner_widths": [
+        4,
+        12,
+        8,
+        4,
+        28,
+        4,
+        8,
+        12,
+        26
+      ],
+      "config": "configs/generated_v4/p030_random_arch1001_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1001_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1001_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1002_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1002,
+      "parameters": 82522,
+      "parameter_ratio_vs_full": 0.3028619244404971,
+      "inner_widths": [
+        12,
+        10,
+        8,
+        4,
+        14,
+        6,
+        38,
+        4,
+        16
+      ],
+      "config": "configs/generated_v4/p030_random_arch1002_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1002_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1002_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1003_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1003,
+      "parameters": 82506,
+      "parameter_ratio_vs_full": 0.3028032032414102,
+      "inner_widths": [
+        14,
+        6,
+        4,
+        8,
+        10,
+        4,
+        26,
+        28,
+        4
+      ],
+      "config": "configs/generated_v4/p030_random_arch1003_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1003_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1003_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1004_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1004,
+      "parameters": 82514,
+      "parameter_ratio_vs_full": 0.30283256384095364,
+      "inner_widths": [
+        12,
+        14,
+        6,
+        4,
+        4,
+        20,
+        8,
+        28,
+        12
+      ],
+      "config": "configs/generated_v4/p030_random_arch1004_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1004_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1004_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1005_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1005,
+      "parameters": 82502,
+      "parameter_ratio_vs_full": 0.3027885229416385,
+      "inner_widths": [
+        6,
+        4,
+        4,
+        24,
+        4,
+        10,
+        8,
+        20,
+        22
+      ],
+      "config": "configs/generated_v4/p030_random_arch1005_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1005_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1005_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1006_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1006,
+      "parameters": 82502,
+      "parameter_ratio_vs_full": 0.3027885229416385,
+      "inner_widths": [
+        8,
+        6,
+        6,
+        8,
+        10,
+        8,
+        22,
+        30,
+        4
+      ],
+      "config": "configs/generated_v4/p030_random_arch1006_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1006_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1006_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1007_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1007,
+      "parameters": 82514,
+      "parameter_ratio_vs_full": 0.30283256384095364,
+      "inner_widths": [
+        12,
+        10,
+        10,
+        8,
+        4,
+        8,
+        22,
+        20,
+        14
+      ],
+      "config": "configs/generated_v4/p030_random_arch1007_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1007_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1007_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1008_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1008,
+      "parameters": 82498,
+      "parameter_ratio_vs_full": 0.30277384264186674,
+      "inner_widths": [
+        6,
+        6,
+        6,
+        4,
+        20,
+        8,
+        10,
+        10,
+        30
+      ],
+      "config": "configs/generated_v4/p030_random_arch1008_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1008_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1008_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1009_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1009,
+      "parameters": 82506,
+      "parameter_ratio_vs_full": 0.3028032032414102,
+      "inner_widths": [
+        8,
+        4,
+        8,
+        8,
+        14,
+        6,
+        26,
+        6,
+        24
+      ],
+      "config": "configs/generated_v4/p030_random_arch1009_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1009_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1009_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    },
+    {
+      "run": "p030_random_arch1010_scratch_seed1",
+      "budget": "p030",
+      "method": "random",
+      "method_family": "random_width_rule",
+      "aliases": [
+        "random"
+      ],
+      "mode": "scratch",
+      "train_seed": 1,
+      "architecture_seed": 1010,
+      "parameters": 82498,
+      "parameter_ratio_vs_full": 0.30277384264186674,
+      "inner_widths": [
+        14,
+        6,
+        6,
+        4,
+        8,
+        8,
+        10,
+        40,
+        4
+      ],
+      "config": "configs/generated_v4/p030_random_arch1010_scratch_seed1.json",
+      "result_dir": "results/p030_random_arch1010_scratch_seed1",
+      "effective_result_dir": "results/p030_random_arch1010_scratch_seed1",
+      "existing_legacy_run": null,
+      "needs_training": false
+    }
+  ],
+  "counts": {
+    "total": 106,
+    "already_complete": 106,
+    "needs_training": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/p060_erank_pooled_scratch_seed1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 160,
+  "learning_rate": 0.1,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "auto",
+  "inner_widths": [
+    8,
+    10,
+    10,
+    18,
+    20,
+    20,
+    36,
+    38,
+    38
+  ]
+}

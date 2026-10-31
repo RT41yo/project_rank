@@ -320,7 +320,9 @@ python -m project_rank.plot_grid_results \
 - распределение десяти `random`-архитектур;
 - тепловую карту преимущества над средним `random`;
 - тепловые карты девяти ширин;
-- график победителей по бюджетам.
+- график победителей по бюджетам;
+- профиль Effective Rank по девяти блокам;
+- сравнение параметров, MACs, задержки и памяти на `p060`.
 
 ## 9. Финальная проверка
 
@@ -338,6 +340,7 @@ test -f reports/data/grid_results_v09.json
 test -f results/summary_v09/summary.json
 test -f reports/figures/quality_parameters_grid.png
 test -f reports/figures/quality_macs_grid.png
+test -f reports/figures/erank_by_block.png
 ```
 
 Ожидаемая сводка:
@@ -359,7 +362,9 @@ test -f reports/figures/quality_macs_grid.png
 - `uniform` выигрывает на `p040`;
 - `erank_per_image` выигрывает на `p030` и превосходит средний `random` на
   всех семи бюджетах;
-- при одинаковом числе параметров MACs могут отличаться более чем в два раза.
+- при одинаковом числе параметров MACs могут отличаться более чем в два раза;
+- fine-tune не всегда превосходит обучение найденной архитектуры с нуля;
+- снижение MACs не гарантирует пропорционального снижения реальной задержки.
 
 Подробная интерпретация, таблицы и ограничения приведены в
 [`reports/REPORT.md`](reports/REPORT.md).

@@ -185,15 +185,15 @@
     "baseline_validation_accuracy": 0.9236,
     "fine_tuning": false,
     "blocks": [
-      {"name": "block1", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0024},
-      {"name": "block2", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0020},
-      {"name": "block3", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0076},
-      {"name": "block4", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0316},
-      {"name": "block5", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0058},
-      {"name": "block6", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0100},
-      {"name": "block7", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0372},
-      {"name": "block8", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0402},
-      {"name": "block9", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0424}
+      {"name": "block1", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0024, "erank_per_image_ratio": 0.7329909104556898, "erank_pooled_ratio": 0.8775570350951584, "erank_weight_ratio": 0.8776357070187915},
+      {"name": "block2", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0020, "erank_per_image_ratio": 0.8795459214390782, "erank_pooled_ratio": 0.932912329857487, "erank_weight_ratio": 0.9407710943045702},
+      {"name": "block3", "base_width": 16, "reduced_width": 12, "accuracy_drop": 0.0076, "erank_per_image_ratio": 0.9041442355359491, "erank_pooled_ratio": 0.9297128840776411, "erank_weight_ratio": 0.9101253084145065},
+      {"name": "block4", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0316, "erank_per_image_ratio": 0.8329287884644203, "erank_pooled_ratio": 0.9067164696343754, "erank_weight_ratio": 0.8977475785290748},
+      {"name": "block5", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0058, "erank_per_image_ratio": 0.8889387403686538, "erank_pooled_ratio": 0.9674276239874989, "erank_weight_ratio": 0.9533672451789124},
+      {"name": "block6", "base_width": 32, "reduced_width": 24, "accuracy_drop": 0.0100, "erank_per_image_ratio": 0.8838792137933238, "erank_pooled_ratio": 0.9739456405457686, "erank_weight_ratio": 0.9577281196110401},
+      {"name": "block7", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0372, "erank_per_image_ratio": 0.6259302339726384, "erank_pooled_ratio": 0.9029854317819233, "erank_weight_ratio": 0.9018415221079134},
+      {"name": "block8", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0402, "erank_per_image_ratio": 0.625787385973518, "erank_pooled_ratio": 0.9676735826016368, "erank_weight_ratio": 0.9675733059108529},
+      {"name": "block9", "base_width": 64, "reduced_width": 48, "accuracy_drop": 0.0424, "erank_per_image_ratio": 0.5262786963813688, "erank_pooled_ratio": 0.9503396132194537, "erank_weight_ratio": 0.9421507578116435}
     ],
     "spearman_vs_accuracy_drop": {
       "erank_per_image": -0.6666666666666666,

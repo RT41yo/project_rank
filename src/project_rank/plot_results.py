@@ -11,6 +11,7 @@ COLORS = {
     "erank_per_image": "#1565C0",
     "uniform": "#2E7D32",
     "erank_pooled": "#EF6C00",
+    "erank_weight": "#616161",
     "random": "#7B1FA2",
     "l1_weight": "#00838F",
     "taylor": "#C62828",
@@ -297,6 +298,49 @@ def plot_quality_size(data: dict[str, Any], output: Path) -> None:
     plt.close(fig)
 
 
+def plot_erank_by_block(data: dict[str, Any], output: Path) -> None:
+    """Plot normalized Effective Rank for all nine residual blocks."""
+    plt = _pyplot()
+    blocks = data["layer_sensitivity"]["blocks"]
+    x = list(range(1, len(blocks) + 1))
+    series = [
+        ("erank_per_image_ratio", "erank_per_image"),
+        ("erank_pooled_ratio", "erank_pooled"),
+        ("erank_weight_ratio", "erank_weight"),
+    ]
+
+    fig, ax = plt.subplots(figsize=(9.6, 5.1))
+    ax.axvspan(0.5, 3.5, color="#E3F2FD", alpha=0.55)
+    ax.axvspan(3.5, 6.5, color="#E8F5E9", alpha=0.55)
+    ax.axvspan(6.5, 9.5, color="#FFF3E0", alpha=0.55)
+    for field, label in series:
+        values = [100.0 * float(item[field]) for item in blocks]
+        ax.plot(
+            x,
+            values,
+            marker="o",
+            markersize=6,
+            linewidth=2.3,
+            color=COLORS[label],
+            label=label,
+        )
+
+    ax.text(2, 100.5, "Группа 1", ha="center", fontsize=9)
+    ax.text(5, 100.5, "Группа 2", ha="center", fontsize=9)
+    ax.text(8, 100.5, "Группа 3", ha="center", fontsize=9)
+    ax.set_xlim(0.7, 9.3)
+    ax.set_ylim(45, 103)
+    ax.set_xticks(x)
+    ax.set_xlabel("Номер остаточного блока")
+    ax.set_ylabel("Effective Rank / исходная ширина, %")
+    ax.set_title("Effective Rank по блокам полной ResNet-20")
+    ax.grid(axis="y")
+    ax.set_axisbelow(True)
+    ax.legend(frameon=False, ncols=3, loc="lower left")
+    _save(fig, output)
+    plt.close(fig)
+
+
 def plot_layer_sensitivity(data: dict[str, Any], output: Path) -> None:
     """Show measured block sensitivity and criterion correlations."""
     plt = _pyplot()
@@ -348,6 +392,7 @@ def generate_plots(data_path: str | Path, output_dir: str | Path) -> list[Path]:
         destination / "resources_p060.png",
         destination / "width_profiles_p060.png",
         destination / "quality_size_seed1.png",
+        destination / "erank_by_block.png",
         destination / "layer_sensitivity.png",
     ]
     plot_accuracy(data, outputs[0])
@@ -355,7 +400,8 @@ def generate_plots(data_path: str | Path, output_dir: str | Path) -> list[Path]:
     plot_resources(data, outputs[2])
     plot_widths(data, outputs[3])
     plot_quality_size(data, outputs[4])
-    plot_layer_sensitivity(data, outputs[5])
+    plot_erank_by_block(data, outputs[5])
+    plot_layer_sensitivity(data, outputs[6])
     return outputs
 
 

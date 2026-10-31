@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "dataset": "CIFAR-10",
   "model": "ResNet-20",
   "batch_size": 128,
@@ -201,6 +201,29 @@
       "erank_weight": 0.3,
       "l1_weight": 0.31666666666666665,
       "taylor": 0.6
+    },
+    "reduction_50": {
+      "reduction_ratio": 0.50,
+      "transfer_method": "conv1_l1",
+      "fine_tuning": false,
+      "blocks": [
+        {"name": "block1", "base_width": 16, "reduced_width": 8, "validation_accuracy": 0.9134, "accuracy_drop": 0.0102},
+        {"name": "block2", "base_width": 16, "reduced_width": 8, "validation_accuracy": 0.9182, "accuracy_drop": 0.0054},
+        {"name": "block3", "base_width": 16, "reduced_width": 8, "validation_accuracy": 0.8836, "accuracy_drop": 0.0400},
+        {"name": "block4", "base_width": 32, "reduced_width": 16, "validation_accuracy": 0.7972, "accuracy_drop": 0.1264},
+        {"name": "block5", "base_width": 32, "reduced_width": 16, "validation_accuracy": 0.8946, "accuracy_drop": 0.0290},
+        {"name": "block6", "base_width": 32, "reduced_width": 16, "validation_accuracy": 0.8978, "accuracy_drop": 0.0258},
+        {"name": "block7", "base_width": 64, "reduced_width": 32, "validation_accuracy": 0.7980, "accuracy_drop": 0.1256},
+        {"name": "block8", "base_width": 64, "reduced_width": 32, "validation_accuracy": 0.8168, "accuracy_drop": 0.1068},
+        {"name": "block9", "base_width": 64, "reduced_width": 32, "validation_accuracy": 0.6900, "accuracy_drop": 0.2336}
+      ],
+      "spearman_vs_accuracy_drop": {
+        "erank_per_image": -0.5166666666666667,
+        "erank_pooled": -0.05,
+        "erank_weight": -0.016666666666666666,
+        "l1_weight": 0.2833333333333333,
+        "taylor": 0.31666666666666665
+      }
     }
   }
 }

@@ -63,6 +63,8 @@ project_rank/
 │   └── figures/                   воспроизводимые графики
 ├── results/
 │   ├── rank_analysis_seed1/       ранги, оценки и архитектуры
+│   ├── layer_sensitivity_seed1/   чувствительность при уменьшении на 25%
+│   ├── layer_sensitivity_r050_seed1/ чувствительность при уменьшении на 50%
 │   └── summary_v09/               сводка расширенной сетки
 ├── src/project_rank/              исходный код
 └── tests/                         автоматические тесты
@@ -277,9 +279,19 @@ python -m project_rank.layer_sensitivity \
   --scores results/rank_analysis_seed1/pruning_scores.json \
   --output-dir results/layer_sensitivity_seed1 \
   --reduction-ratio 0.25
+
+python -m project_rank.layer_sensitivity \
+  --config configs/baseline.json \
+  --checkpoint results/baseline_seed1/best.pt \
+  --ranks results/rank_analysis_seed1/ranks.csv \
+  --scores results/rank_analysis_seed1/pruning_scores.json \
+  --output-dir results/layer_sensitivity_r050_seed1 \
+  --reduction-ratio 0.50
 ```
 
-Каждый блок по очереди уменьшается на 25%. Дообучение не выполняется.
+Каждый блок по очереди уменьшается сначала на 25%, затем на 50%. Дообучение не
+выполняется. Эти два запуска измеряют непосредственное падение точности после
+сужения одного блока.
 
 ## 8. Формирование сводки и графиков
 

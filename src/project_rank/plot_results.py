@@ -21,8 +21,8 @@ COLORS = {
 def load_report_data(path: str | Path) -> dict[str, Any]:
     with Path(path).open("r", encoding="utf-8") as file:
         data = json.load(file)
-    if data.get("schema_version") != 2:
-        raise ValueError("Ожидалась вторая версия формата итоговых данных")
+    if data.get("schema_version") != 3:
+        raise ValueError("Ожидалась третья версия формата итоговых данных")
     return data
 
 
@@ -342,41 +342,79 @@ def plot_erank_by_block(data: dict[str, Any], output: Path) -> None:
 
 
 def plot_layer_sensitivity(data: dict[str, Any], output: Path) -> None:
-    """Show measured block sensitivity and criterion correlations."""
+    """Compare block sensitivity at 25% and 50% width reduction."""
     plt = _pyplot()
     sensitivity = data["layer_sensitivity"]
-    blocks = sensitivity["blocks"]
-    correlations = sensitivity["spearman_vs_accuracy_drop"]
+    blocks_25 = sensitivity["blocks"]
+    reduction_50 = sensitivity["reduction_50"]
+    blocks_50 = reduction_50["blocks"]
+    correlations_25 = sensitivity["spearman_vs_accuracy_drop"]
+    correlations_50 = reduction_50["spearman_vs_accuracy_drop"]
 
     fig, (ax_drop, ax_corr) = plt.subplots(1, 2, figsize=(11.2, 4.8))
-    names = [item["name"] for item in blocks]
-    drops = [100.0 * float(item["accuracy_drop"]) for item in blocks]
-    colors = ["#90CAF9" if value < 2.0 else "#EF5350" for value in drops]
-    bars = ax_drop.bar(names, drops, color=colors)
+    names = [item["name"] for item in blocks_25]
+    x = list(range(len(names)))
+    drops_25 = [100.0 * float(item["accuracy_drop"]) for item in blocks_25]
+    drops_50 = [100.0 * float(item["accuracy_drop"]) for item in blocks_50]
+    bar_width = 0.38
+    bars_25 = ax_drop.bar(
+        [value - bar_width / 2 for value in x], drops_25, width=bar_width,
+        color="#42A5F5", label="уменьшение на 25%",
+    )
+    bars_50 = ax_drop.bar(
+        [value + bar_width / 2 for value in x], drops_50, width=bar_width,
+        color="#EF6C00", label="уменьшение на 50%",
+    )
     ax_drop.set_ylabel("Падение validation accuracy, п.п.")
-    ax_drop.set_title("Сужение одного блока на 25%")
+    ax_drop.set_title("Сужение одного блока")
+    ax_drop.set_xticks(x, names)
+    ax_drop.set_ylim(0, 26.5)
     ax_drop.tick_params(axis="x", rotation=45)
     ax_drop.grid(axis="y")
     ax_drop.set_axisbelow(True)
-    for bar, value in zip(bars, drops, strict=True):
-        ax_drop.text(bar.get_x() + bar.get_width() / 2, value + 0.08,
-                     f"{value:.2f}".replace(".", ","), ha="center", fontsize=8)
+    ax_drop.legend(frameon=False, fontsize=9)
+    for bars, values in ((bars_25, drops_25), (bars_50, drops_50)):
+        for bar, value in zip(bars, values, strict=True):
+            ax_drop.text(
+                bar.get_x() + bar.get_width() / 2,
+                value + 0.22,
+                f"{value:.2f}".replace(".", ","),
+                ha="center",
+                fontsize=7,
+                rotation=90,
+            )
 
-    criterion_names = list(correlations)
-    values = [float(correlations[name]) for name in criterion_names]
-    corr_colors = [COLORS.get(name, "#5F6368") for name in criterion_names]
-    bars = ax_corr.barh(criterion_names, values, color=corr_colors)
+    criterion_names = list(correlations_25)
+    y = list(range(len(criterion_names)))
+    values_25 = [float(correlations_25[name]) for name in criterion_names]
+    values_50 = [float(correlations_50[name]) for name in criterion_names]
+    bars_25 = ax_corr.barh(
+        [value - bar_width / 2 for value in y], values_25, height=bar_width,
+        color="#42A5F5", label="уменьшение на 25%",
+    )
+    bars_50 = ax_corr.barh(
+        [value + bar_width / 2 for value in y], values_50, height=bar_width,
+        color="#EF6C00", label="уменьшение на 50%",
+    )
     ax_corr.axvline(0.0, color="#5F6368", linewidth=1)
     ax_corr.set_xlim(-0.8, 0.8)
+    ax_corr.set_yticks(y, criterion_names)
     ax_corr.set_xlabel("Корреляция Спирмена")
     ax_corr.set_title("Связь критерия с падением accuracy")
     ax_corr.grid(axis="x")
     ax_corr.set_axisbelow(True)
-    for bar, value in zip(bars, values, strict=True):
-        offset = 0.025 if value >= 0 else -0.025
-        ax_corr.text(value + offset, bar.get_y() + bar.get_height() / 2,
-                     f"{value:+.2f}".replace(".", ","),
-                     ha="left" if value >= 0 else "right", va="center", fontsize=9)
+    ax_corr.legend(frameon=False, fontsize=9, loc="lower right")
+    for bars, values in ((bars_25, values_25), (bars_50, values_50)):
+        for bar, value in zip(bars, values, strict=True):
+            offset = 0.025 if value >= 0 else -0.025
+            ax_corr.text(
+                value + offset,
+                bar.get_y() + bar.get_height() / 2,
+                f"{value:+.2f}".replace(".", ","),
+                ha="left" if value >= 0 else "right",
+                va="center",
+                fontsize=8,
+            )
     fig.suptitle("Чувствительность блоков без дообучения", fontsize=14)
     fig.tight_layout()
     _save(fig, output)

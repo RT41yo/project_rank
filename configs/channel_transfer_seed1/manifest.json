@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "architecture": "erank_per_image",
+  "train_seed": 1,
+  "selection_seed": 2001,
+  "activation_samples": 5000,
+  "fine_tune_epochs": 30,
+  "fine_tune_learning_rate": 0.01,
+  "budgets": [
+    {
+      "label": "p060",
+      "inner_widths": [
+        10,
+        12,
+        14,
+        24,
+        26,
+        26,
+        36,
+        36,
+        30
+      ],
+      "scratch_test": "results/p060_erank_per_image_scratch_seed1/test.json",
+      "experiments": [
+        {
+          "method": "l1",
+          "transfer_method": "conv1_l1",
+          "initial_checkpoint": "results/channel_transfer_initializations_seed1/p060_l1_init.pt",
+          "initial_test": "results/channel_transfer_seed1/p060_l1_initial_test.json",
+          "config": "configs/channel_transfer_seed1/p060_l1_finetune_seed1.json",
+          "output_dir": "results/p060_erank_per_image_finetune_seed1",
+          "final_test": "results/p060_erank_per_image_finetune_seed1/test.json",
+          "reused_existing_result": true
+        },
+        {
+          "method": "random",
+          "transfer_method": "random_channels",
+          "initial_checkpoint": "results/channel_transfer_initializations_seed1/p060_random_init.pt",
+          "initial_test": "results/channel_transfer_seed1/p060_random_initial_test.json",
+          "config": "configs/channel_transfer_seed1/p060_random_finetune_seed1.json",
+          "output_dir": "results/channel_transfer_seed1/p060_random_finetune_seed1",
+          "final_test": "results/channel_transfer_seed1/p060_random_finetune_seed1/test.json",
+          "reused_existing_result": false
+        },
+        {
+          "method": "erank_subspace",
+          "transfer_method": "erank_activation_subspace",
+          "initial_checkpoint": "results/channel_transfer_initializations_seed1/p060_erank_subspace_init.pt",
+          "initial_test": "results/channel_transfer_seed1/p060_erank_subspace_initial_test.json",
+          "config": "configs/channel_transfer_seed1/p060_erank_subspace_finetune_seed1.json",
+          "output_dir": "results/channel_transfer_seed1/p060_erank_subspace_finetune_seed1",
+          "final_test": "results/channel_transfer_seed1/p060_erank_subspace_finetune_seed1/test.json",
+          "reused_existing_result": false
+        }
+      ]
+    },
+    {
+      "label": "p030",
+      "inner_widths": [
+        6,
+        6,
+        6,
+        12,
+        12,
+        12,
+        18,
+        18,
+        14
+      ],
+      "scratch_test": "results/p030_erank_per_image_scratch_seed1/test.json",
+      "experiments": [
+        {
+          "method": "l1",
+          "transfer_method": "conv1_l1",
+          "initial_checkpoint": "results/channel_transfer_initializations_seed1/p030_l1_init.pt",
+          "initial_test": "results/channel_transfer_seed1/p030_l1_initial_test.json",
+          "config": "configs/channel_transfer_seed1/p030_l1_finetune_seed1.json",
+          "output_dir": "results/channel_transfer_seed1/p030_l1_finetune_seed1",
+          "final_test": "results/channel_transfer_seed1/p030_l1_finetune_seed1/test.json",
+          "reused_existing_result": false
+        },
+        {
+          "method": "random",
+          "transfer_method": "random_channels",
+          "initial_checkpoint": "results/channel_transfer_initializations_seed1/p030_random_init.pt",
+          "initial_test": "results/channel_transfer_seed1/p030_random_initial_test.json",
+          "config": "configs/channel_transfer_seed1/p030_random_finetune_seed1.json",
+          "output_dir": "results/channel_transfer_seed1/p030_random_finetune_seed1",
+          "final_test": "results/channel_transfer_seed1/p030_random_finetune_seed1/test.json",
+          "reused_existing_result": false
+        },
+        {
+          "method": "erank_subspace",
+          "transfer_method": "erank_activation_subspace",
+          "initial_checkpoint": "results/channel_transfer_initializations_seed1/p030_erank_subspace_init.pt",
+          "initial_test": "results/channel_transfer_seed1/p030_erank_subspace_initial_test.json",
+          "config": "configs/channel_transfer_seed1/p030_erank_subspace_finetune_seed1.json",
+          "output_dir": "results/channel_transfer_seed1/p030_erank_subspace_finetune_seed1",
+          "final_test": "results/channel_transfer_seed1/p030_erank_subspace_finetune_seed1/test.json",
+          "reused_existing_result": false
+        }
+      ]
+    }
+  ]
+}

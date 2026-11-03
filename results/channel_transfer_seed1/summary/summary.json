@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "architecture": "erank_per_image",
+  "train_seed": 1,
+  "selection_seed": 2001,
+  "rows": [
+    {
+      "budget": "p060",
+      "method": "l1",
+      "scratch_test_accuracy": 0.9133,
+      "initial_test_accuracy": 0.3979,
+      "final_test_accuracy": 0.917,
+      "fine_tune_gain_pp": 51.91000000000001,
+      "delta_vs_scratch_pp": 0.37000000000000366,
+      "reused_existing_result": true
+    },
+    {
+      "budget": "p060",
+      "method": "random",
+      "scratch_test_accuracy": 0.9133,
+      "initial_test_accuracy": 0.3549,
+      "final_test_accuracy": 0.9134,
+      "fine_tune_gain_pp": 55.85,
+      "delta_vs_scratch_pp": 0.009999999999998899,
+      "reused_existing_result": false
+    },
+    {
+      "budget": "p060",
+      "method": "erank_subspace",
+      "scratch_test_accuracy": 0.9133,
+      "initial_test_accuracy": 0.2993,
+      "final_test_accuracy": 0.9159,
+      "fine_tune_gain_pp": 61.660000000000004,
+      "delta_vs_scratch_pp": 0.26000000000000467,
+      "reused_existing_result": false
+    },
+    {
+      "budget": "p030",
+      "method": "l1",
+      "scratch_test_accuracy": 0.8997,
+      "initial_test_accuracy": 0.1272,
+      "final_test_accuracy": 0.8973,
+      "fine_tune_gain_pp": 77.01,
+      "delta_vs_scratch_pp": -0.24000000000000687,
+      "reused_existing_result": false
+    },
+    {
+      "budget": "p030",
+      "method": "random",
+      "scratch_test_accuracy": 0.8997,
+      "initial_test_accuracy": 0.1249,
+      "final_test_accuracy": 0.891,
+      "fine_tune_gain_pp": 76.61,
+      "delta_vs_scratch_pp": -0.8700000000000041,
+      "reused_existing_result": false
+    },
+    {
+      "budget": "p030",
+      "method": "erank_subspace",
+      "scratch_test_accuracy": 0.8997,
+      "initial_test_accuracy": 0.0972,
+      "final_test_accuracy": 0.8923,
+      "fine_tune_gain_pp": 79.51,
+      "delta_vs_scratch_pp": -0.7400000000000073,
+      "reused_existing_result": false
+    }
+  ]
+}

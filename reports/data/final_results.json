@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "dataset": "CIFAR-10",
   "model": "ResNet-20",
   "batch_size": 128,
@@ -179,6 +179,20 @@
       "finetune_test_seed1": 0.9166,
       "benchmark": {"macs_per_batch": 4119937024, "latency_median_ms": 1.3172330004636024, "latency_p90_ms": 1.956099000381073, "images_per_second": 97173.39297979187, "peak_cuda_memory_bytes": 76957696}
     }
+  },
+  "channel_transfer": {
+    "architecture": "erank_per_image",
+    "train_seed": 1,
+    "selection_seed": 2001,
+    "fine_tune_epochs": 30,
+    "rows": [
+      {"budget": "p060", "method": "l1", "scratch_test_accuracy": 0.9133, "initial_test_accuracy": 0.3979, "final_test_accuracy": 0.9170, "delta_vs_scratch_pp": 0.37},
+      {"budget": "p060", "method": "random", "scratch_test_accuracy": 0.9133, "initial_test_accuracy": 0.3549, "final_test_accuracy": 0.9134, "delta_vs_scratch_pp": 0.01},
+      {"budget": "p060", "method": "erank_subspace", "scratch_test_accuracy": 0.9133, "initial_test_accuracy": 0.2993, "final_test_accuracy": 0.9159, "delta_vs_scratch_pp": 0.26},
+      {"budget": "p030", "method": "l1", "scratch_test_accuracy": 0.8997, "initial_test_accuracy": 0.1272, "final_test_accuracy": 0.8973, "delta_vs_scratch_pp": -0.24},
+      {"budget": "p030", "method": "random", "scratch_test_accuracy": 0.8997, "initial_test_accuracy": 0.1249, "final_test_accuracy": 0.8910, "delta_vs_scratch_pp": -0.87},
+      {"budget": "p030", "method": "erank_subspace", "scratch_test_accuracy": 0.8997, "initial_test_accuracy": 0.0972, "final_test_accuracy": 0.8923, "delta_vs_scratch_pp": -0.74}
+    ]
   },
   "layer_sensitivity": {
     "reduction_ratio": 0.25,

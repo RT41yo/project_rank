@@ -15,14 +15,16 @@ COLORS = {
     "random": "#7B1FA2",
     "l1_weight": "#00838F",
     "taylor": "#C62828",
+    "erank_subspace": "#1565C0",
+    "l1": "#00838F",
 }
 
 
 def load_report_data(path: str | Path) -> dict[str, Any]:
     with Path(path).open("r", encoding="utf-8") as file:
         data = json.load(file)
-    if data.get("schema_version") != 3:
-        raise ValueError("Ожидалась третья версия формата итоговых данных")
+    if data.get("schema_version") != 4:
+        raise ValueError("Ожидалась четвёртая версия формата итоговых данных")
     return data
 
 
@@ -341,6 +343,89 @@ def plot_erank_by_block(data: dict[str, Any], output: Path) -> None:
     plt.close(fig)
 
 
+def plot_channel_transfer(data: dict[str, Any], output: Path) -> None:
+    """Compare fixed-width channel-transfer methods before and after fine-tune."""
+    plt = _pyplot()
+    rows = data["channel_transfer"]["rows"]
+    budgets = ["p060", "p030"]
+    methods = ["l1", "random", "erank_subspace"]
+    labels = {
+        "l1": "L1",
+        "random": "random",
+        "erank_subspace": "ERank subspace",
+        "scratch": "scratch",
+    }
+    points = {
+        (str(item["budget"]), str(item["method"])): item for item in rows
+    }
+    x = list(range(len(budgets)))
+
+    fig, (ax_initial, ax_final) = plt.subplots(1, 2, figsize=(11.2, 4.8))
+    width = 0.24
+    for method_index, method in enumerate(methods):
+        offset = (method_index - 1) * width
+        values = [
+            100.0 * float(points[(budget, method)]["initial_test_accuracy"])
+            for budget in budgets
+        ]
+        bars = ax_initial.bar(
+            [value + offset for value in x],
+            values,
+            width=width,
+            color=COLORS[method],
+            label=labels[method],
+        )
+        ax_initial.bar_label(bars, fmt="%.2f", fontsize=8, padding=2)
+    ax_initial.set_xticks(x, budgets)
+    ax_initial.set_ylim(0, 45)
+    ax_initial.set_ylabel("Точность на test, %")
+    ax_initial.set_title("Сразу после переноса")
+    ax_initial.grid(axis="y")
+    ax_initial.set_axisbelow(True)
+    ax_initial.legend(frameon=False, fontsize=9)
+
+    final_methods = ["scratch", *methods]
+    final_width = 0.19
+    final_colors = {
+        "scratch": COLORS["baseline"],
+        "l1": COLORS["l1"],
+        "random": COLORS["random"],
+        "erank_subspace": COLORS["erank_subspace"],
+    }
+    for method_index, method in enumerate(final_methods):
+        offset = (method_index - 1.5) * final_width
+        if method == "scratch":
+            values = [
+                100.0 * float(points[(budget, "l1")]["scratch_test_accuracy"])
+                for budget in budgets
+            ]
+        else:
+            values = [
+                100.0 * float(points[(budget, method)]["final_test_accuracy"])
+                for budget in budgets
+            ]
+        bars = ax_final.bar(
+            [value + offset for value in x],
+            values,
+            width=final_width,
+            color=final_colors[method],
+            label=labels[method],
+        )
+        ax_final.bar_label(bars, fmt="%.2f", fontsize=8, padding=2, rotation=90)
+    ax_final.set_xticks(x, budgets)
+    ax_final.set_ylim(88.4, 92.2)
+    ax_final.set_ylabel("Точность на test, %")
+    ax_final.set_title("После 30 эпох fine-tune")
+    ax_final.grid(axis="y")
+    ax_final.set_axisbelow(True)
+    ax_final.legend(frameon=False, fontsize=8, ncols=2)
+
+    fig.suptitle("Перенос каналов при фиксированной архитектуре", fontsize=14)
+    fig.tight_layout()
+    _save(fig, output)
+    plt.close(fig)
+
+
 def plot_layer_sensitivity(data: dict[str, Any], output: Path) -> None:
     """Compare block sensitivity at 25% and 50% width reduction."""
     plt = _pyplot()
@@ -431,6 +516,7 @@ def generate_plots(data_path: str | Path, output_dir: str | Path) -> list[Path]:
         destination / "width_profiles_p060.png",
         destination / "quality_size_seed1.png",
         destination / "erank_by_block.png",
+        destination / "channel_transfer.png",
         destination / "layer_sensitivity.png",
     ]
     plot_accuracy(data, outputs[0])
@@ -439,7 +525,8 @@ def generate_plots(data_path: str | Path, output_dir: str | Path) -> list[Path]:
     plot_widths(data, outputs[3])
     plot_quality_size(data, outputs[4])
     plot_erank_by_block(data, outputs[5])
-    plot_layer_sensitivity(data, outputs[6])
+    plot_channel_transfer(data, outputs[6])
+    plot_layer_sensitivity(data, outputs[7])
     return outputs
 
 

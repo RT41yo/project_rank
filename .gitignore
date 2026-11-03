@@ -20,6 +20,8 @@ results/*
 !results/summary_v09/**
 !results/rank_analysis_seed1/
 !results/rank_analysis_seed1/**
+!results/channel_transfer_seed1/
+!results/channel_transfer_seed1/**
 !results/.gitkeep
 *.pt
 *.pth

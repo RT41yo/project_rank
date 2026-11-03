@@ -1,0 +1,30 @@
+{
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/channel_transfer_seed1/p030_l1_finetune_seed1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 30,
+  "learning_rate": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "auto",
+  "inner_widths": [
+    6,
+    6,
+    6,
+    12,
+    12,
+    12,
+    18,
+    18,
+    14
+  ],
+  "resume_from": "results/channel_transfer_initializations_seed1/p030_l1_init.pt",
+  "transfer_method": "conv1_l1"
+}

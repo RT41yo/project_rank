@@ -1,0 +1,42 @@
+{
+  "split": "test",
+  "loss": 4.649336318206787,
+  "accuracy": 0.3979,
+  "samples": 10000.0,
+  "seconds": 4.959626972995466
+}
+{
+  "split": "test",
+  "loss": 3.928790158462524,
+  "accuracy": 0.3549,
+  "samples": 10000.0,
+  "seconds": 4.930785531993024
+}
+{
+  "split": "test",
+  "loss": 3.0107858932495115,
+  "accuracy": 0.2993,
+  "samples": 10000.0,
+  "seconds": 4.962621988990577
+}
+{
+  "split": "test",
+  "loss": 8.300633659362793,
+  "accuracy": 0.1272,
+  "samples": 10000.0,
+  "seconds": 4.848901774006663
+}
+{
+  "split": "test",
+  "loss": 7.856176220703125,
+  "accuracy": 0.1249,
+  "samples": 10000.0,
+  "seconds": 4.884961258008843
+}
+{
+  "split": "test",
+  "loss": 2.9977994537353516,
+  "accuracy": 0.0972,
+  "samples": 10000.0,
+  "seconds": 4.926139482005965
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "criterion": "erank_per_image",
+  "train_seed": 1,
+  "source_budget": "p060",
+  "target_budget": "p040",
+  "one_step": {
+    "inner_widths": [8, 8, 8, 16, 18, 16, 24, 24, 20],
+    "parameters": 109654,
+    "scratch_test_accuracy": 0.9033,
+    "finetune_test_accuracy": null
+  },
+  "iterative": {
+    "inner_widths": [8, 10, 10, 20, 22, 20, 24, 22, 14],
+    "parameters": 107942,
+    "scratch_test_accuracy": 0.9100,
+    "finetune_test_accuracy": 0.9073
+  },
+  "difference": {
+    "parameters": -1712,
+    "parameters_percent_vs_one_step": -1.5612745545078155,
+    "scratch_accuracy_pp": 0.67,
+    "finetune_minus_scratch_pp": -0.27
+  }
+}

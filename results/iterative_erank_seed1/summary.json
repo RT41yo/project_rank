@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "criterion": "erank_per_image",
+  "train_seed": 1,
+  "chain": ["p080", "p060", "p040", "p030"],
+  "rank_samples_per_step": 5000,
+  "rows": [
+    {
+      "budget": "p060",
+      "one_step_parameters": 162790,
+      "iterative_parameters": 163958,
+      "one_step_scratch_accuracy": 0.9133,
+      "iterative_scratch_accuracy": 0.9153,
+      "scratch_gain_pp": 0.20,
+      "one_step_finetune_accuracy": 0.9170,
+      "iterative_finetune_accuracy": 0.9171
+    },
+    {
+      "budget": "p040",
+      "one_step_parameters": 109654,
+      "iterative_parameters": 107942,
+      "one_step_scratch_accuracy": 0.9033,
+      "iterative_scratch_accuracy": 0.9100,
+      "scratch_gain_pp": 0.67,
+      "one_step_finetune_accuracy": null,
+      "iterative_finetune_accuracy": 0.9073
+    },
+    {
+      "budget": "p030",
+      "one_step_parameters": 81354,
+      "iterative_parameters": 82238,
+      "one_step_scratch_accuracy": 0.8997,
+      "iterative_scratch_accuracy": 0.9014,
+      "scratch_gain_pp": 0.17,
+      "one_step_finetune_accuracy": 0.8973,
+      "iterative_finetune_accuracy": 0.8983
+    }
+  ],
+  "stable_profile": {
+    "relatively_wider_blocks": [2, 3, 4, 5, 6],
+    "relatively_narrower_blocks": [8, 9],
+    "interpretation": "The repeated ERank search preserves more middle-block channels and prunes the final blocks more strongly."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "python_torch": "2.14.1+cu130",
+  "cuda_available": true,
+  "cuda_runtime": "13.0",
+  "cudnn": 92400,
+  "gpu": "NVIDIA GeForce RTX 5070 Ti"
+}

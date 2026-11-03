@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 7,
   "dataset": "CIFAR-10",
   "model": "ResNet-20",
   "batch_size": 128,
@@ -179,6 +179,104 @@
       "finetune_test_seed1": 0.9166,
       "benchmark": {"macs_per_batch": 4119937024, "latency_median_ms": 1.3172330004636024, "latency_p90_ms": 1.956099000381073, "images_per_second": 97173.39297979187, "peak_cuda_memory_bytes": 76957696}
     }
+  },
+  "iterative_erank": {
+    "criterion": "erank_per_image",
+    "train_seed": 1,
+    "rank_samples": 5000,
+    "transitions": [
+      {
+        "label": "p080_to_p060",
+        "source": {
+          "budget": "p080",
+          "widths": [14, 16, 16, 32, 32, 32, 50, 50, 42],
+          "parameters": 218226,
+          "training_mode": "scratch"
+        },
+        "one_step": {
+          "budget": "p060",
+          "widths": [10, 12, 14, 24, 26, 26, 36, 36, 30],
+          "parameters": 162790,
+          "scratch_test_accuracy": 0.9133,
+          "finetune_test_accuracy": 0.9170
+        },
+        "iterative": {
+          "budget": "p060",
+          "widths": [10, 14, 14, 28, 30, 28, 36, 36, 26],
+          "parameters": 163958,
+          "parameter_ratio_vs_full": 0.6017381474929718,
+          "scratch_test_accuracy": 0.9153,
+          "finetune_test_accuracy": 0.9171
+        },
+        "difference": {
+          "parameters": 1168,
+          "parameters_percent_vs_one_step": 0.7174887892376681,
+          "scratch_accuracy_pp": 0.20,
+          "finetune_accuracy_pp": 0.01
+        }
+      },
+      {
+        "label": "p060_to_p040",
+        "source": {
+          "budget": "p060",
+          "widths": [10, 14, 14, 28, 30, 28, 36, 36, 26],
+          "parameters": 163958,
+          "training_mode": "scratch"
+        },
+        "one_step": {
+          "budget": "p040",
+          "widths": [8, 8, 8, 16, 18, 16, 24, 24, 20],
+          "parameters": 109654,
+          "scratch_test_accuracy": 0.9033,
+          "finetune_test_accuracy": null
+        },
+        "iterative": {
+          "budget": "p040",
+          "widths": [8, 10, 10, 20, 22, 20, 24, 22, 14],
+          "parameters": 107942,
+          "parameter_ratio_vs_full": 0.39615522948978615,
+          "scratch_test_accuracy": 0.9100,
+          "finetune_test_accuracy": 0.9073
+        },
+        "difference": {
+          "parameters": -1712,
+          "parameters_percent_vs_one_step": -1.5612745545078155,
+          "scratch_accuracy_pp": 0.67,
+          "finetune_minus_scratch_pp": -0.27
+        }
+      },
+      {
+        "label": "p040_to_p030",
+        "source": {
+          "budget": "p040",
+          "widths": [8, 10, 10, 20, 22, 20, 24, 22, 14],
+          "parameters": 107942,
+          "training_mode": "scratch"
+        },
+        "one_step": {
+          "budget": "p030",
+          "widths": [6, 6, 6, 12, 12, 12, 18, 18, 14],
+          "parameters": 81354,
+          "scratch_test_accuracy": 0.8997,
+          "finetune_test_accuracy": 0.8973
+        },
+        "iterative": {
+          "budget": "p030",
+          "widths": [6, 8, 8, 14, 18, 16, 18, 16, 10],
+          "parameters": 82238,
+          "parameter_ratio_vs_full": 0.30181962315670485,
+          "scratch_test_accuracy": 0.9014,
+          "finetune_test_accuracy": 0.8983
+        },
+        "difference": {
+          "parameters": 884,
+          "parameters_percent_vs_one_step": 1.0866091403004154,
+          "scratch_accuracy_pp": 0.17,
+          "finetune_accuracy_pp": 0.10,
+          "iterative_finetune_minus_scratch_pp": -0.31
+        }
+      }
+    ]
   },
   "channel_transfer": {
     "architecture": "erank_per_image",

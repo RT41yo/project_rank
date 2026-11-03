@@ -23,8 +23,8 @@ COLORS = {
 def load_report_data(path: str | Path) -> dict[str, Any]:
     with Path(path).open("r", encoding="utf-8") as file:
         data = json.load(file)
-    if data.get("schema_version") != 4:
-        raise ValueError("Ожидалась четвёртая версия формата итоговых данных")
+    if data.get("schema_version") != 7:
+        raise ValueError("Ожидалась седьмая версия формата итоговых данных")
     return data
 
 
@@ -426,6 +426,135 @@ def plot_channel_transfer(data: dict[str, Any], output: Path) -> None:
     plt.close(fig)
 
 
+def plot_iterative_search(data: dict[str, Any], output: Path) -> None:
+    """Compare direct and iterative ERank architectures and accuracy."""
+    plt = _pyplot()
+    study = data["iterative_erank"]
+    transitions = {
+        item["iterative"]["budget"]: item for item in study["transitions"]
+    }
+    budgets = ["p060", "p040", "p030"]
+    fig, axes = plt.subplots(2, 3, figsize=(15.2, 8.0))
+    blocks = list(range(1, 10))
+    for column, budget in enumerate(budgets):
+        ax_widths = axes[0][column]
+        transition = transitions[budget]
+        one_step = transition["one_step"]
+        iterative = transition["iterative"]
+        ax_widths.plot(
+            blocks,
+            one_step["widths"],
+            marker="o",
+            linewidth=2.2,
+            color="#78909C",
+            label="одношаговая",
+        )
+        ax_widths.plot(
+            blocks,
+            iterative["widths"],
+            marker="o",
+            linewidth=2.2,
+            color=COLORS["erank_per_image"],
+            label="итеративная",
+        )
+        ax_widths.set_xticks(blocks)
+        ax_widths.set_xlabel("Номер остаточного блока")
+        ax_widths.set_ylabel("Внутренняя ширина")
+        ax_widths.set_title(f"Распределение каналов: {budget}")
+        ax_widths.grid(axis="y")
+        ax_widths.legend(frameon=False, fontsize=9)
+
+    x = list(range(len(budgets)))
+    width = 0.34
+    one_values = [
+        100.0 * float(transitions[budget]["one_step"]["scratch_test_accuracy"])
+        for budget in budgets
+    ]
+    iterative_values = [
+        100.0 * float(transitions[budget]["iterative"]["scratch_test_accuracy"])
+        for budget in budgets
+    ]
+    ax_accuracy = axes[1][0]
+    one_bars = ax_accuracy.bar(
+        [value - width / 2 for value in x],
+        one_values,
+        width=width,
+        color="#78909C",
+        label="одношаговая",
+    )
+    iterative_bars = ax_accuracy.bar(
+        [value + width / 2 for value in x],
+        iterative_values,
+        width=width,
+        color=COLORS["erank_per_image"],
+        label="итеративная",
+    )
+    ax_accuracy.bar_label(one_bars, fmt="%.2f%%", padding=3, fontsize=9)
+    ax_accuracy.bar_label(iterative_bars, fmt="%.2f%%", padding=3, fontsize=9)
+    ax_accuracy.set_xticks(x, budgets)
+    ax_accuracy.set_ylim(89.5, 92.0)
+    ax_accuracy.set_ylabel("Точность на test, %")
+    ax_accuracy.set_title("Обучение с нуля")
+    ax_accuracy.grid(axis="y")
+    ax_accuracy.set_axisbelow(True)
+    ax_accuracy.legend(frameon=False, fontsize=9, loc="upper right")
+
+    scratch_values = iterative_values
+    fine_tune_values = [
+        100.0 * float(transitions[budget]["iterative"]["finetune_test_accuracy"])
+        for budget in budgets
+    ]
+    ax_modes = axes[1][1]
+    scratch_bars = ax_modes.bar(
+        [value - width / 2 for value in x],
+        scratch_values,
+        width=width,
+        color=COLORS["erank_per_image"],
+        label="scratch",
+    )
+    fine_tune_bars = ax_modes.bar(
+        [value + width / 2 for value in x],
+        fine_tune_values,
+        width=width,
+        color=COLORS["l1"],
+        label="fine-tune L1",
+    )
+    ax_modes.bar_label(scratch_bars, fmt="%.2f%%", padding=3, fontsize=9)
+    ax_modes.bar_label(fine_tune_bars, fmt="%.2f%%", padding=3, fontsize=9)
+    ax_modes.set_xticks(x, budgets)
+    ax_modes.set_ylim(89.5, 92.0)
+    ax_modes.set_ylabel("Точность на test, %")
+    ax_modes.set_title("Обучение итеративной архитектуры")
+    ax_modes.grid(axis="y")
+    ax_modes.set_axisbelow(True)
+    ax_modes.legend(frameon=False, fontsize=9, loc="upper right")
+
+    gains = [
+        float(transitions[budget]["difference"]["scratch_accuracy_pp"])
+        for budget in budgets
+    ]
+    ax_gain = axes[1][2]
+    gain_bars = ax_gain.bar(
+        x,
+        gains,
+        width=0.58,
+        color=COLORS["erank_per_image"],
+    )
+    ax_gain.bar_label(gain_bars, fmt="+%.2f п.п.", padding=3, fontsize=9)
+    ax_gain.axhline(0.0, color="#5F6368", linewidth=1)
+    ax_gain.set_xticks(x, budgets)
+    ax_gain.set_ylim(0, 0.80)
+    ax_gain.set_ylabel("Разница точности, п.п.")
+    ax_gain.set_title("Выигрыш итеративного scratch")
+    ax_gain.grid(axis="y")
+    ax_gain.set_axisbelow(True)
+
+    fig.suptitle("Одношаговый и итеративный поиск по Effective Rank", fontsize=14)
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
+    _save(fig, output)
+    plt.close(fig)
+
+
 def plot_layer_sensitivity(data: dict[str, Any], output: Path) -> None:
     """Compare block sensitivity at 25% and 50% width reduction."""
     plt = _pyplot()
@@ -517,6 +646,7 @@ def generate_plots(data_path: str | Path, output_dir: str | Path) -> list[Path]:
         destination / "quality_size_seed1.png",
         destination / "erank_by_block.png",
         destination / "channel_transfer.png",
+        destination / "iterative_search.png",
         destination / "layer_sensitivity.png",
     ]
     plot_accuracy(data, outputs[0])
@@ -526,7 +656,8 @@ def generate_plots(data_path: str | Path, output_dir: str | Path) -> list[Path]:
     plot_quality_size(data, outputs[4])
     plot_erank_by_block(data, outputs[5])
     plot_channel_transfer(data, outputs[6])
-    plot_layer_sensitivity(data, outputs[7])
+    plot_iterative_search(data, outputs[7])
+    plot_layer_sensitivity(data, outputs[8])
     return outputs
 
 

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "criterion": "erank_per_image",
+  "rank_samples": 5000,
+  "source": {
+    "checkpoint": "results/iterative_erank_seed1/step_p060_to_p040/scratch/best.pt",
+    "inner_widths": [8, 10, 10, 20, 22, 20, 24, 22, 14],
+    "parameters": 107942,
+    "parameter_ratio_vs_full": 0.39615522948978615
+  },
+  "target": {
+    "label": "p030",
+    "requested_parameter_ratio_vs_full": 0.3,
+    "requested_parameters": 81742,
+    "inner_widths": [6, 8, 8, 14, 18, 16, 18, 16, 10],
+    "parameters": 82238,
+    "parameter_ratio_vs_full": 0.30181962315670485
+  },
+  "ranks": "results/iterative_erank_seed1/step_p040_to_p030/ranks.csv",
+  "fine_tune": {
+    "channel_transfer": "l1",
+    "initialization": "results/iterative_erank_seed1/step_p040_to_p030/l1_initialization.pt",
+    "config": "configs/iterative_erank_seed1/step_p040_to_p030/p030_finetune_l1.json",
+    "output_dir": "results/iterative_erank_seed1/step_p040_to_p030/finetune_l1"
+  },
+  "scratch": {
+    "config": "configs/iterative_erank_seed1/step_p040_to_p030/p030_scratch.json",
+    "output_dir": "results/iterative_erank_seed1/step_p040_to_p030/scratch"
+  }
+}

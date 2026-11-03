@@ -24,10 +24,15 @@ def test_final_report_data_and_plots(tmp_path):
     )
     assert len(data["channel_transfer"]["rows"]) == 6
     assert data["channel_transfer"]["rows"][0]["final_test_accuracy"] == 0.917
+    transitions = data["iterative_erank"]["transitions"]
+    assert len(transitions) == 3
+    assert transitions[0]["iterative"]["scratch_test_accuracy"] == 0.9153
+    assert transitions[1]["difference"]["scratch_accuracy_pp"] == 0.67
+    assert transitions[2]["iterative"]["scratch_test_accuracy"] == 0.9014
 
     outputs = generate_plots(data_path, tmp_path)
 
-    assert len(outputs) == 8
+    assert len(outputs) == 9
     assert all(path.is_file() and path.stat().st_size > 5_000 for path in outputs)
     with open(data_path, "r", encoding="utf-8") as file:
-        assert json.load(file)["schema_version"] == 4
+        assert json.load(file)["schema_version"] == 7

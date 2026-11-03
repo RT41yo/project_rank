@@ -68,8 +68,37 @@ def make_erank_architecture(
         raise ValueError("target_ratio must be in (0, 1]")
     full_parameters = count_resnet20_parameters(base_widths)
     target = int(round(full_parameters * target_ratio))
+    return make_erank_architecture_for_budget(
+        ranks,
+        target,
+        base_widths=base_widths,
+        minimum=minimum,
+        multiple=multiple,
+    )
+
+
+def make_erank_architecture_for_budget(
+    ranks: Sequence[float],
+    target_parameters: int,
+    base_widths: Sequence[int] = DEFAULT_INNER_WIDTHS,
+    minimum: int = 4,
+    multiple: int = 2,
+) -> Architecture:
+    """Build an ERank profile for an absolute parameter budget.
+
+    ``base_widths`` are the largest widths allowed in every block. This makes
+    the function suitable for iterative pruning: the next architecture can be
+    narrower than the current one, but cannot restore channels removed during
+    an earlier step.
+    """
+    if target_parameters <= 0:
+        raise ValueError("target_parameters must be positive")
     widths = _best_scaled_widths(
-        ranks, base_widths, target, minimum=minimum, multiple=multiple
+        ranks,
+        base_widths,
+        int(target_parameters),
+        minimum=minimum,
+        multiple=multiple,
     )
     return Architecture("erank", widths, count_resnet20_parameters(widths))
 

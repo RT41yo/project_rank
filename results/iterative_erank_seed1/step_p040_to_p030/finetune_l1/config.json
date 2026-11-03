@@ -1,0 +1,36 @@
+{
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/iterative_erank_seed1/step_p040_to_p030/finetune_l1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 30,
+  "learning_rate": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "auto",
+  "inner_widths": [
+    6,
+    8,
+    8,
+    14,
+    18,
+    16,
+    18,
+    16,
+    10
+  ],
+  "resume_from": "results/iterative_erank_seed1/step_p040_to_p030/l1_initialization.pt",
+  "iterative_search": {
+    "criterion": "erank_per_image",
+    "source_checkpoint": "results/iterative_erank_seed1/step_p060_to_p040/scratch/best.pt",
+    "target_budget": "p030",
+    "training_mode": "finetune",
+    "channel_transfer": "l1"
+  }
+}

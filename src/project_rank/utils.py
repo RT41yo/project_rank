@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 import os
+import platform
+import subprocess
 import random
 from pathlib import Path
 from typing import Any
@@ -44,11 +46,24 @@ def resolve_device(requested: str = "auto") -> torch.device:
 
 
 def environment_summary() -> dict[str, Any]:
+    try:
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        dirty = bool(subprocess.run(
+            ["git", "status", "--porcelain"], capture_output=True, text=True, check=True,
+        ).stdout.strip())
+    except (OSError, subprocess.CalledProcessError):
+        commit, dirty = None, None
     return {
+        "python": platform.python_version(),
+        "platform": platform.platform(),
+        "cpu": platform.processor(),
+        "git_commit": commit,
+        "git_dirty": dirty,
         "python_torch": torch.__version__,
         "cuda_available": torch.cuda.is_available(),
         "cuda_runtime": torch.version.cuda,
         "cudnn": torch.backends.cudnn.version(),
         "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
     }
-

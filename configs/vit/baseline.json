@@ -1,0 +1,30 @@
+{
+  "protocol_id": "vit_cifar10_sgd_v1",
+  "model_spec": {
+    "type": "vit_tiny_cifar",
+    "image_size": 32,
+    "patch_size": 4,
+    "embed_dim": 192,
+    "depth": 12,
+    "num_heads": 3,
+    "num_classes": 10
+  },
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/vit/baseline_seed1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 160,
+  "rank_checkpoint_epochs": [0, 1, 10, 40, 80, 120, 160],
+  "learning_rate": 0.1,
+  "momentum": 0.9,
+  "nesterov": true,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": true,
+  "device": "cuda",
+  "inner_widths": [768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768]
+}

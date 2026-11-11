@@ -1,0 +1,60 @@
+{
+  "protocol_id": "vit_cifar10_adamw_v1",
+  "model_spec": {
+    "type": "vit_tiny_cifar",
+    "image_size": 32,
+    "patch_size": 4,
+    "embed_dim": 192,
+    "depth": 12,
+    "num_heads": 3,
+    "num_classes": 10
+  },
+  "seed": 1,
+  "dataset": "cifar10",
+  "data_dir": "data",
+  "output_dir": "results/vit/p060_stage_d_seed1/p060_l1_finetune_seed1",
+  "num_classes": 10,
+  "val_size": 5000,
+  "batch_size": 128,
+  "num_workers": 4,
+  "epochs": 30,
+  "rank_checkpoint_epochs": [],
+  "optimizer": "adamw",
+  "learning_rate": 2.9999999999999997e-05,
+  "weight_decay": 0.05,
+  "adam_betas": [
+    0.9,
+    0.999
+  ],
+  "adam_eps": 1e-08,
+  "exclude_bias_norm_tokens_from_weight_decay": true,
+  "scheduler": "cosine",
+  "warmup_epochs": 5,
+  "warmup_start_factor": 0.01,
+  "amp": true,
+  "device": "cuda",
+  "inner_widths": [
+    284,
+    306,
+    310,
+    314,
+    318,
+    310,
+    314,
+    312,
+    302,
+    300,
+    294,
+    280
+  ],
+  "experiment": {
+    "family": "vit_p060_stage_d",
+    "budget": "p060",
+    "mode": "finetune",
+    "width_rule": "erank_per_image",
+    "transfer_method": "l1",
+    "architecture_seed": null,
+    "mask_seed": null
+  },
+  "resume_from": "results/vit/p060_stage_d_seed1/initializations/p060_l1.pt"
+}

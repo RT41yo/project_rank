@@ -1,0 +1,29 @@
+{
+  "experiment": "vit_cifar10_adamw_pilot_v1_baseline",
+  "status": "training_complete_quality_gate_passed",
+  "config": "configs/vit/baseline_adamw_pilot.json",
+  "result_dir": "results/vit/baseline_adamw_pilot_seed1",
+  "epochs_completed": 160,
+  "best_epoch": 152,
+  "best_validation_accuracy": 0.8276,
+  "best_validation_loss": 1.187785332942009,
+  "validation_samples": 5000,
+  "train_accuracy_at_best_epoch": 0.9998666666666667,
+  "train_loss_at_best_epoch": 0.0005948759025971716,
+  "last_train_accuracy": 0.9998666666666667,
+  "last_train_loss": 0.0004457001952661408,
+  "last_validation_accuracy": 0.8264,
+  "last_validation_loss": 1.1939754170656205,
+  "train_epoch_seconds_total": 706.582858218997,
+  "validation_epoch_seconds_total": 22.051334855997993,
+  "timing_scope": "epoch loops only; excludes dataset download, setup and checkpoint IO",
+  "quality_gate_validation_accuracy": 0.8,
+  "difference_vs_sgd_validation_percentage_points": 6.66,
+  "test_evaluated": false,
+  "limitations": [
+    "Single seed; not statistical evidence of optimizer superiority.",
+    "Training accuracy near 100% with validation accuracy 82.76% indicates overfitting.",
+    "Validation accuracy improved while validation loss is worse than SGD; probability calibration is not established."
+  ],
+  "next_action": "Collect activation/weight ranks and L1/Taylor on validation only using this pilot checkpoint; keep protocol and outputs separate from SGD."
+}

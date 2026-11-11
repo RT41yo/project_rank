@@ -1,0 +1,365 @@
+{
+  "schema": "vit_mlp_architectures_v1",
+  "protocol_id": "vit_cifar10_adamw_pilot_v1",
+  "model_spec": {
+    "type": "vit_tiny_cifar",
+    "image_size": 32,
+    "patch_size": 4,
+    "embed_dim": 192,
+    "depth": 12,
+    "num_heads": 3,
+    "num_classes": 10
+  },
+  "source_config": "configs/vit/baseline_adamw_pilot.json",
+  "source_ranks": "reports/data/vit/rank_analysis_adamw_pilot_seed1/ranks.csv",
+  "analysis_metadata": {
+    "checkpoint": "results/vit/baseline_adamw_pilot_seed1/best.pt",
+    "model_spec": {
+      "type": "vit_tiny_cifar",
+      "image_size": 32,
+      "patch_size": 4,
+      "embed_dim": 192,
+      "depth": 12,
+      "num_heads": 3,
+      "num_classes": 10
+    },
+    "samples": 5000,
+    "max_samples": 5000,
+    "spectrum": "singular_values",
+    "statistics_dtype": "float64",
+    "per_image_centering": "observations_within_image",
+    "pooled_centering": "all_observations_globally",
+    "exclude_cls": true
+  },
+  "full_parameters": 5362762,
+  "rounding": {
+    "minimum": 4,
+    "erank_multiple": 2,
+    "random_multiple": 2,
+    "uniform_multiple": 1
+  },
+  "random_sampler": "uniform_bounded_composition_conditional_on_width_sum",
+  "not_yet_included": [
+    "l1_weight",
+    "taylor",
+    "training_manifest"
+  ],
+  "budgets": [
+    {
+      "label": "p060",
+      "requested_parameters": 3217657,
+      "reference_architecture": "erank_pooled",
+      "reference_parameters": 3217542,
+      "architectures": [
+        {
+          "name": "erank_per_image",
+          "inner_widths": [
+            284,
+            306,
+            310,
+            314,
+            318,
+            310,
+            314,
+            312,
+            302,
+            300,
+            294,
+            280
+          ],
+          "parameters": 3217542,
+          "architecture_seed": null,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "erank_pooled",
+          "inner_widths": [
+            234,
+            320,
+            372,
+            406,
+            410,
+            378,
+            356,
+            292,
+            234,
+            222,
+            202,
+            218
+          ],
+          "parameters": 3217542,
+          "architecture_seed": null,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "erank_weight",
+          "inner_widths": [
+            274,
+            284,
+            290,
+            296,
+            302,
+            308,
+            312,
+            316,
+            318,
+            316,
+            316,
+            312
+          ],
+          "parameters": 3217542,
+          "architecture_seed": null,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "uniform",
+          "inner_widths": [
+            304,
+            304,
+            304,
+            304,
+            304,
+            304,
+            304,
+            304,
+            304,
+            304,
+            304,
+            304
+          ],
+          "parameters": 3219082,
+          "architecture_seed": null,
+          "parameter_ratio_vs_full": 0.6002656839889594,
+          "difference_vs_reference_percent": 0.047862623083086406,
+          "macs_per_image": 226130304
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            32,
+            232,
+            70,
+            452,
+            120,
+            602,
+            562,
+            136,
+            74,
+            78,
+            706,
+            580
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1001,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            242,
+            96,
+            412,
+            354,
+            74,
+            540,
+            170,
+            190,
+            570,
+            30,
+            766,
+            200
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1002,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            202,
+            332,
+            494,
+            726,
+            34,
+            622,
+            368,
+            34,
+            144,
+            626,
+            24,
+            38
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1003,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            326,
+            466,
+            222,
+            694,
+            546,
+            364,
+            332,
+            186,
+            22,
+            172,
+            124,
+            190
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1004,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            720,
+            352,
+            374,
+            216,
+            270,
+            90,
+            54,
+            326,
+            594,
+            94,
+            40,
+            514
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1005,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            124,
+            124,
+            248,
+            638,
+            258,
+            158,
+            54,
+            312,
+            10,
+            558,
+            416,
+            744
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1006,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            574,
+            90,
+            480,
+            208,
+            286,
+            36,
+            138,
+            146,
+            656,
+            472,
+            294,
+            264
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1007,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            44,
+            676,
+            702,
+            198,
+            328,
+            8,
+            302,
+            68,
+            304,
+            132,
+            662,
+            220
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1008,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            286,
+            118,
+            196,
+            84,
+            156,
+            638,
+            478,
+            118,
+            694,
+            76,
+            616,
+            184
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1009,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        },
+        {
+          "name": "random",
+          "inner_widths": [
+            648,
+            418,
+            244,
+            24,
+            598,
+            52,
+            358,
+            342,
+            108,
+            310,
+            492,
+            50
+          ],
+          "parameters": 3217542,
+          "architecture_seed": 1010,
+          "parameter_ratio_vs_full": 0.599978518532055,
+          "difference_vs_reference_percent": 0.0,
+          "macs_per_image": 226030464
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "experiment": "vit_cifar10_sgd_v1_baseline",
+  "status": "training_complete_quality_gate_failed",
+  "config": "configs/vit/baseline.json",
+  "result_dir": "results/vit/baseline_seed1",
+  "epochs_completed": 160,
+  "best_epoch": 158,
+  "best_validation_accuracy": 0.761,
+  "best_validation_loss": 0.6790422500610351,
+  "validation_samples": 5000,
+  "last_train_accuracy": 0.7819777777777778,
+  "last_train_loss": 0.6201901852395799,
+  "last_validation_accuracy": 0.7598,
+  "train_epoch_seconds_total": 689.7073035230242,
+  "validation_epoch_seconds_total": 22.0828720410027,
+  "timing_scope": "epoch loops only; excludes dataset download, setup and checkpoint IO",
+  "quality_gate_validation_accuracy": 0.8,
+  "test_evaluated": false,
+  "next_action": "Do not start compression grid. Agree on a separate ViT training-recipe pilot; preserve this run."
+}

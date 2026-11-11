@@ -1,0 +1,19 @@
+{
+  "checkpoint": "results/vit/baseline_adamw_pilot_seed1/best.pt",
+  "model_spec": {
+    "type": "vit_tiny_cifar",
+    "image_size": 32,
+    "patch_size": 4,
+    "embed_dim": 192,
+    "depth": 12,
+    "num_heads": 3,
+    "num_classes": 10
+  },
+  "samples": 5000,
+  "max_samples": 5000,
+  "spectrum": "singular_values",
+  "statistics_dtype": "float64",
+  "per_image_centering": "observations_within_image",
+  "pooled_centering": "all_observations_globally",
+  "exclude_cls": true
+}

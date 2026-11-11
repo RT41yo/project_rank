@@ -12,6 +12,8 @@ from torch import nn
 
 from project_rank.data import build_loaders
 from project_rank.models import DEFAULT_INNER_WIDTHS, ResNet20
+from project_rank.models.factory import model_from_checkpoint
+from project_rank.models.vit_tiny import ViTTinyCIFAR
 from project_rank.utils import load_json, resolve_device, save_json, seed_everything
 
 
@@ -27,17 +29,18 @@ def l2_normalize(values: Sequence[float]) -> list[float]:
 
 
 @torch.no_grad()
-def collect_l1_weight_scores(model: ResNet20) -> dict[str, list[float]]:
-    """Return the L1 norm of every Conv1 output filter in every block."""
+def collect_l1_weight_scores(model: ResNet20 | ViTTinyCIFAR) -> dict[str, list[float]]:
+    """L1 norms of Conv1 filters or fc1 output rows (bias excluded)."""
     result: dict[str, list[float]] = {}
     for index, block in enumerate(model.blocks, start=1):
-        scores = block.conv1.weight.detach().abs().sum(dim=(1, 2, 3))
+        weight = block.fc1.weight if isinstance(model, ViTTinyCIFAR) else block.conv1.weight
+        scores = weight.detach().abs().sum(dim=tuple(range(1, weight.ndim)))
         result[f"block{index}"] = scores.cpu().double().tolist()
     return result
 
 
 def collect_taylor_scores(
-    model: ResNet20,
+    model: ResNet20 | ViTTinyCIFAR,
     loader: Any,
     device: torch.device,
     max_samples: int,
@@ -53,8 +56,8 @@ def collect_taylor_scores(
 
     model.eval()
     totals = {
-        f"block{index + 1}": torch.zeros(block.inner_channels, dtype=torch.float64)
-        for index, block in enumerate(model.blocks)
+        f"block{index + 1}": torch.zeros(width, dtype=torch.float64)
+        for index, width in enumerate(model.inner_widths)
     }
     handles: list[Any] = []
 
@@ -63,7 +66,9 @@ def collect_taylor_scores(
             activation = output.detach()
 
             def gradient_hook(gradient: torch.Tensor) -> None:
-                contribution = (activation * gradient.detach()).sum(dim=(2, 3)).abs()
+                # Token case includes CLS: removing a neuron affects all tokens.
+                dimensions = (1,) if activation.ndim == 3 else (2, 3)
+                contribution = (activation * gradient.detach()).sum(dim=dimensions).abs()
                 totals[name].add_(contribution.sum(dim=0).cpu().double())
 
             output.register_hook(gradient_hook)
@@ -115,7 +120,7 @@ def _criterion_payload(scores: dict[str, list[float]]) -> dict[str, Any]:
 
 
 def analyze_pruning_criteria(
-    model: ResNet20,
+    model: ResNet20 | ViTTinyCIFAR,
     loader: Any,
     device: torch.device,
     max_samples: int,
@@ -151,10 +156,10 @@ def main() -> None:
     _, validation_loader = build_loaders(config)
     checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
     widths = tuple(int(value) for value in checkpoint["inner_widths"])
-    if widths != tuple(DEFAULT_INNER_WIDTHS):
-        raise ValueError("Pruning criteria must be measured on the full ResNet-20")
-    model = ResNet20(widths, checkpoint.get("num_classes", 10)).to(device)
-    model.load_state_dict(checkpoint["model_state"])
+    model = model_from_checkpoint(checkpoint).to(device)
+    full_widths = model.spec.default_widths if isinstance(model, ViTTinyCIFAR) else tuple(DEFAULT_INNER_WIDTHS)
+    if widths != full_widths:
+        raise ValueError("Pruning criteria must be measured on the full model")
 
     result = analyze_pruning_criteria(
         model, validation_loader, device, max_samples=args.max_samples

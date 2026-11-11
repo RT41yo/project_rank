@@ -1,0 +1,6 @@
+name,mode,width_rule,transfer_method,architecture_seed,mask_seed,parameters,macs_per_image,epochs_completed,best_epoch,initial_validation_accuracy,validation_accuracy,validation_loss,validation_samples
+p060_erank_per_image_scratch_seed1,scratch,erank_per_image,,,,3217542,226030464,160,136,,0.8266,1.212964192533493,5000
+p060_random_arch1001_scratch_seed1,scratch,random,,1001,,3217542,226030464,160,154,,0.8264,1.186920009613037,5000
+p060_l1_finetune_seed1,finetune,erank_per_image,l1,,,3217542,226030464,30,25,0.6356,0.8138,1.2163165040254593,5000
+p060_random_finetune_seed1,finetune,erank_per_image,random,,2001,3217542,226030464,30,27,0.487,0.8132,1.0416198396921157,5000
+p060_erank_subspace_finetune_seed1,finetune,erank_per_image,erank_subspace,,,3217542,226030464,30,28,0.7566,0.8244,1.1987620510339736,5000

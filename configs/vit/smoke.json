@@ -1,0 +1,27 @@
+{
+  "protocol_id": "vit_synthetic_smoke_not_scientific_result",
+  "model_spec": {
+    "type": "vit_tiny_cifar",
+    "embed_dim": 24,
+    "depth": 2,
+    "num_heads": 3
+  },
+  "seed": 1,
+  "dataset": "synthetic",
+  "overwrite": true,
+  "output_dir": "results/vit/smoke",
+  "num_classes": 10,
+  "inner_widths": [32, 48],
+  "synthetic_train_size": 16,
+  "synthetic_val_size": 8,
+  "synthetic_test_size": 8,
+  "batch_size": 4,
+  "num_workers": 0,
+  "epochs": 1,
+  "learning_rate": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "scheduler": "cosine",
+  "amp": false,
+  "device": "cpu"
+}

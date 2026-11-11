@@ -42,15 +42,11 @@ class _LayerStatistics:
     image_rank_sum: float = 0.0
     image_count: int = 0
 
-    def update(self, activation: torch.Tensor) -> None:
-        if activation.ndim != 4:
-            raise ValueError("Expected activation with shape B x C x H x W")
-        batch, channels, height, width = activation.shape
+    def update(self, activation: torch.Tensor, *, exclude_cls: bool = False) -> None:
+        per_image = activation_observations(activation, exclude_cls=exclude_cls)
+        batch, _positions, channels = per_image.shape
         if channels != self.channels:
             raise ValueError(f"Expected {self.channels} channels, got {channels}")
-
-        per_image = activation.detach().to(dtype=torch.float64)
-        per_image = per_image.permute(0, 2, 3, 1).reshape(batch, height * width, channels)
         centered_per_image = per_image - per_image.mean(dim=1, keepdim=True)
         per_image_ranks = effective_rank_from_singular_values(
             torch.linalg.svdvals(centered_per_image)
@@ -87,12 +83,33 @@ class _LayerStatistics:
         }
 
 
+def activation_observations(
+    activation: torch.Tensor, *, exclude_cls: bool = False
+) -> torch.Tensor:
+    """Convert CNN maps or token activations to B x observations x channels."""
+    values = activation.detach().to(dtype=torch.float64)
+    if values.ndim == 4:
+        if exclude_cls:
+            raise ValueError("CLS exclusion only applies to token activations")
+        return values.permute(0, 2, 3, 1).reshape(values.shape[0], -1, values.shape[1])
+    if values.ndim == 3:
+        values = values[:, 1:] if exclude_cls else values
+        if values.shape[1] < 1:
+            raise ValueError("No observation tokens")
+        return values
+    raise ValueError("Expected B x C x H x W or B x T x M activation")
+
+
 class ActivationRankCollector:
     """Forward-hook collector for per-image and pooled activation ERank."""
 
-    def __init__(self, modules: Mapping[str, nn.Module], widths: Mapping[str, int]):
+    def __init__(
+        self, modules: Mapping[str, nn.Module], widths: Mapping[str, int],
+        *, exclude_cls: bool = False,
+    ):
         if set(modules) != set(widths):
             raise ValueError("modules and widths must have identical keys")
+        self.exclude_cls = exclude_cls
         self.statistics = {
             name: _LayerStatistics(channels=int(widths[name])) for name in modules
         }
@@ -103,7 +120,7 @@ class ActivationRankCollector:
 
     def _make_hook(self, name: str):
         def hook(_module: nn.Module, _inputs: Any, output: torch.Tensor) -> None:
-            self.statistics[name].update(output)
+            self.statistics[name].update(output, exclude_cls=self.exclude_cls)
 
         return hook
 
@@ -138,7 +155,11 @@ def collect_activation_ranks(
     }
     model.eval()
     seen = 0
-    with ActivationRankCollector(modules, widths) as collector:
+    from project_rank.models.vit_tiny import ViTTinyCIFAR
+
+    with ActivationRankCollector(
+        modules, widths, exclude_cls=isinstance(model, ViTTinyCIFAR)
+    ) as collector:
         for images, _targets in loader:
             if max_samples is not None:
                 remaining = max_samples - seen
@@ -156,9 +177,9 @@ def collect_weight_ranks(model: nn.Module) -> dict[str, float]:
         raise TypeError("Model must expose residual blocks")
     results: dict[str, float] = {}
     for index, block in enumerate(model.blocks):
-        weight = block.conv1.weight.detach().to(dtype=torch.float64)
+        first = block.fc1 if hasattr(block, "fc1") else block.conv1
+        weight = first.weight.detach().to(dtype=torch.float64)
         matrix = weight.reshape(weight.shape[0], -1)
         rank = effective_rank_torch(matrix, center=False)
         results[f"block{index + 1}"] = float(rank.cpu())
     return results
-

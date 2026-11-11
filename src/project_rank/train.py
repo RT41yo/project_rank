@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import time
 from collections.abc import Mapping
 from pathlib import Path
@@ -11,7 +12,9 @@ import torch
 from torch import nn
 
 from project_rank.data import build_loaders
-from project_rank.models import DEFAULT_INNER_WIDTHS, ResNet20
+from project_rank.models.factory import build_model, model_specification
+from project_rank.models.vit_tiny import ViTTinyCIFAR
+from project_rank.optimization import build_optimizer, build_scheduler
 from project_rank.utils import (
     environment_summary,
     load_json,
@@ -82,45 +85,43 @@ def train_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
     device = resolve_device(str(config.get("device", "auto")))
     train_loader, val_loader = build_loaders(config)
 
-    model = ResNet20(
-        inner_widths=config.get("inner_widths", DEFAULT_INNER_WIDTHS),
-        num_classes=int(config.get("num_classes", 10)),
-    ).to(device)
+    model = build_model(config).to(device)
+    output_dir = Path(str(config.get("output_dir", "results/run")))
+    if isinstance(model, ViTTinyCIFAR) and not config.get("overwrite", False):
+        if any((output_dir / name).exists() for name in ("best.pt", "last.pt", "history.json")):
+            raise FileExistsError(f"Refusing to overwrite ViT run: {output_dir}. Use a new output_dir.")
 
     resume_from = config.get("resume_from")
     if resume_from:
         checkpoint = torch.load(resume_from, map_location="cpu", weights_only=False)
+        if checkpoint.get("model_spec", {"type": "resnet20"}) != model_specification(model):
+            raise ValueError("Initialization checkpoint model_spec differs from target")
         model.load_state_dict(checkpoint["model_state"])
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(
-        model.parameters(),
-        lr=float(config.get("learning_rate", 0.1)),
-        momentum=float(config.get("momentum", 0.9)),
-        weight_decay=float(config.get("weight_decay", 5e-4)),
-        nesterov=bool(config.get("nesterov", True)),
-    )
+    optimizer = build_optimizer(model, config)
     epochs = int(config.get("epochs", 160))
-    scheduler_name = str(config.get("scheduler", "cosine"))
-    if scheduler_name == "cosine":
-        scheduler: Any = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=epochs
-        )
-    elif scheduler_name == "none":
-        scheduler = None
-    else:
-        raise ValueError(f"Unsupported scheduler: {scheduler_name}")
+    rank_epochs = config.get("rank_checkpoint_epochs", [])
+    if epochs < 1 or any(type(e) is not int or not 0 <= e <= epochs for e in rank_epochs):
+        raise ValueError("epochs must be positive; rank checkpoint epochs must be in [0, epochs]")
+    scheduler = build_scheduler(optimizer, config, epochs)
 
     amp_enabled = bool(config.get("amp", True)) and device.type == "cuda"
     scaler = torch.amp.GradScaler("cuda", enabled=True) if amp_enabled else None
-    output_dir = Path(str(config.get("output_dir", "results/run")))
     output_dir.mkdir(parents=True, exist_ok=True)
     save_json(config, output_dir / "config.json")
     save_json(environment_summary(), output_dir / "environment.json")
 
     history: list[dict[str, Any]] = []
     best_accuracy = -1.0
+    if 0 in rank_epochs:
+        torch.save({
+            "epoch": 0, "model_state": model.state_dict(),
+            "inner_widths": list(model.inner_widths), "num_classes": model.num_classes,
+            "model_spec": model_specification(model), "config": config,
+        }, output_dir / "epoch_000.pt")
     for epoch in range(1, epochs + 1):
+        learning_rate_used = optimizer.param_groups[0]["lr"]
         train_metrics = _run_epoch(
             model,
             train_loader,
@@ -139,12 +140,15 @@ def train_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
             scaler=None,
             amp_enabled=amp_enabled,
         )
+        if not all(math.isfinite(m["loss"]) for m in (train_metrics, val_metrics)):
+            raise FloatingPointError(f"Non-finite loss at epoch {epoch}; run is incomplete")
         if scheduler is not None:
             scheduler.step()
 
         row = {
             "epoch": epoch,
             "learning_rate": optimizer.param_groups[0]["lr"],
+            "learning_rate_used": learning_rate_used,
             "train": train_metrics,
             "validation": val_metrics,
         }
@@ -158,8 +162,11 @@ def train_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
             "num_classes": model.num_classes,
             "validation_accuracy": val_metrics["accuracy"],
             "config": config,
+            "model_spec": model_specification(model),
         }
         torch.save(checkpoint, output_dir / "last.pt")
+        if epoch in rank_epochs:
+            torch.save(checkpoint, output_dir / f"epoch_{epoch:03d}.pt")
         if val_metrics["accuracy"] > best_accuracy:
             best_accuracy = val_metrics["accuracy"]
             torch.save(checkpoint, output_dir / "best.pt")
@@ -173,7 +180,7 @@ def train_from_config(config: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train CIFAR ResNet-20")
+    parser = argparse.ArgumentParser(description="Train CIFAR ResNet-20 or ViT")
     parser.add_argument("--config", required=True, help="Path to JSON config")
     return parser.parse_args()
 
@@ -186,4 +193,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

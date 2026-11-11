@@ -10,7 +10,7 @@ import torch
 from torch import nn
 
 from project_rank.data import build_loaders, build_test_loader
-from project_rank.models import ResNet20
+from project_rank.models.factory import model_from_checkpoint
 from project_rank.train import _run_epoch
 from project_rank.utils import load_json, resolve_device, save_json
 
@@ -31,10 +31,7 @@ def evaluate_checkpoint(
         raise ValueError("split must be 'validation' or 'test'")
 
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
-    model = ResNet20(
-        checkpoint["inner_widths"], checkpoint.get("num_classes", 10)
-    ).to(device)
-    model.load_state_dict(checkpoint["model_state"])
+    model = model_from_checkpoint(checkpoint).to(device)
     metrics = _run_epoch(
         model,
         loader,
@@ -48,7 +45,7 @@ def evaluate_checkpoint(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate a saved ResNet-20")
+    parser = argparse.ArgumentParser(description="Evaluate a saved CIFAR model")
     parser.add_argument("--config", required=True)
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument(
@@ -75,4 +72,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

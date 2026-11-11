@@ -10,7 +10,9 @@ import torch
 from project_rank.architectures import architecture_report
 from project_rank.data import build_loaders
 from project_rank.effective_rank import collect_activation_ranks, collect_weight_ranks
-from project_rank.models import DEFAULT_INNER_WIDTHS, ResNet20
+from project_rank.models import DEFAULT_INNER_WIDTHS
+from project_rank.models.factory import model_from_checkpoint
+from project_rank.models.vit_tiny import ViTTinyCIFAR
 from project_rank.utils import load_json, resolve_device, save_json, seed_everything
 
 
@@ -22,6 +24,7 @@ def main() -> None:
     parser.add_argument("--max-samples", type=int, default=5000)
     parser.add_argument("--target-param-ratio", type=float, default=0.60)
     parser.add_argument("--random-seed", type=int, default=1001)
+    parser.add_argument("--ranks-only", action="store_true", help="Collect ranks without ResNet architecture proposals")
     args = parser.parse_args()
 
     config = load_json(args.config)
@@ -30,11 +33,12 @@ def main() -> None:
     _, val_loader = build_loaders(config)
     checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
     widths = tuple(int(value) for value in checkpoint["inner_widths"])
-    if widths != tuple(DEFAULT_INNER_WIDTHS):
+    model = model_from_checkpoint(checkpoint).to(device)
+    if isinstance(model, ViTTinyCIFAR):
+        if not args.ranks_only:
+            parser.error("ViT currently supports --ranks-only; the grid builder is not yet ported")
+    elif widths != tuple(DEFAULT_INNER_WIDTHS):
         raise ValueError("The first architecture search must use the full ResNet-20")
-
-    model = ResNet20(widths, checkpoint.get("num_classes", 10)).to(device)
-    model.load_state_dict(checkpoint["model_state"])
     activation_results = collect_activation_ranks(
         model, val_loader, device, max_samples=args.max_samples
     )
@@ -43,7 +47,7 @@ def main() -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     rows: list[dict[str, object]] = []
-    for index in range(9):
+    for index in range(len(widths)):
         name = f"block{index + 1}"
         row = {
             "block": name,
@@ -57,6 +61,19 @@ def main() -> None:
         writer = csv.DictWriter(file, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
+
+    save_json({
+        "checkpoint": str(args.checkpoint),
+        "model_spec": checkpoint.get("model_spec", {"type": "resnet20"}),
+        "samples": rows[0]["images"], "max_samples": args.max_samples,
+        "spectrum": "singular_values", "statistics_dtype": "float64",
+        "per_image_centering": "observations_within_image",
+        "pooled_centering": "all_observations_globally",
+        "exclude_cls": isinstance(model, ViTTinyCIFAR),
+    }, output_dir / "analysis_metadata.json")
+    if args.ranks_only:
+        print(json.dumps({"ranks": str(csv_path)}, indent=2))
+        return
 
     ranks = [float(row["pooled_effective_rank"]) for row in rows]
     report = architecture_report(ranks, args.target_param_ratio, args.random_seed)
@@ -77,4 +94,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

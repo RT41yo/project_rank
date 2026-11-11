@@ -12,6 +12,8 @@ from torch import nn
 
 from project_rank.data import build_loaders
 from project_rank.models import ResNet20
+from project_rank.models.vit_tiny import ViTTinyCIFAR
+from project_rank.effective_rank import activation_observations
 from project_rank.utils import load_json, resolve_device, seed_everything
 
 
@@ -115,11 +117,11 @@ class _ChannelMoments:
     sum_x: torch.Tensor | None = None
     sum_xtx: torch.Tensor | None = None
 
-    def update(self, activation: torch.Tensor) -> None:
-        if activation.ndim != 4 or activation.shape[1] != self.channels:
-            raise ValueError("Expected activation with shape B x C x H x W")
-        observations = activation.detach().to(dtype=torch.float64)
-        observations = observations.permute(0, 2, 3, 1).reshape(-1, self.channels)
+    def update(self, activation: torch.Tensor, *, exclude_cls: bool = False) -> None:
+        values = activation_observations(activation, exclude_cls=exclude_cls)
+        if values.shape[-1] != self.channels:
+            raise ValueError("Activation width does not match channel moments")
+        observations = values.reshape(-1, self.channels)
         batch_sum = observations.sum(dim=0).cpu()
         batch_xtx = (observations.T @ observations).cpu()
         if self.sum_x is None:
@@ -141,7 +143,7 @@ class _ChannelMoments:
 
 @torch.inference_mode()
 def collect_activation_covariances(
-    model: ResNet20,
+    model: ResNet20 | ViTTinyCIFAR,
     loader: Any,
     device: torch.device,
     max_samples: int | None = None,
@@ -155,7 +157,9 @@ def collect_activation_covariances(
     for name, module in model.activation_modules.items():
         handles.append(
             module.register_forward_hook(
-                lambda _module, _inputs, output, layer=name: moments[layer].update(output)
+                lambda _module, _inputs, output, layer=name: moments[layer].update(
+                    output, exclude_cls=isinstance(model, ViTTinyCIFAR)
+                )
             )
         )
 
@@ -313,4 +317,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
